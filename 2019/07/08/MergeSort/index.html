@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="Continue rising.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BinaryZone">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="思路：　　归并排序是分治法和递归的典型应用。归并排序分为两种实现方法：自顶向下和自底向上。自顶向下先归后并，即先将待排序数组递归分割，然后将分割后的数组进行合并排序；而自底向上没有使用递归，而是直接使用迭代“手动”进行分割，然后进行合并排序。自底向上由于没有使用递归，减少了栈空间的使用。 代码：top to bottom:　　123456789101112131415161718192021222">
+<meta property="og:type" content="article">
+<meta property="og:title" content="归并排序">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/MergeSort/index.html">
 <meta property="og:site_name" content="BinaryZone">
-<meta property="og:description" content="Continue rising.">
+<meta property="og:description" content="思路：　　归并排序是分治法和递归的典型应用。归并排序分为两种实现方法：自顶向下和自底向上。自顶向下先归后并，即先将待排序数组递归分割，然后将分割后的数组进行合并排序；而自底向上没有使用递归，而是直接使用迭代“手动”进行分割，然后进行合并排序。自底向上由于没有使用递归，减少了栈空间的使用。 代码：top to bottom:　　123456789101112131415161718192021222">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-08T15:48:07.005Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BinaryZone">
-<meta name="twitter:description" content="Continue rising.">
+<meta name="twitter:title" content="归并排序">
+<meta name="twitter:description" content="思路：　　归并排序是分治法和递归的典型应用。归并排序分为两种实现方法：自顶向下和自底向上。自顶向下先归后并，即先将待排序数组递归分割，然后将分割后的数组进行合并排序；而自底向上没有使用递归，而是直接使用迭代“手动”进行分割，然后进行合并排序。自底向上由于没有使用递归，减少了栈空间的使用。 代码：top to bottom:　　123456789101112131415161718192021222">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/08/MergeSort/">
 
 
 
 
 
-  <title>BinaryZone</title>
+  <title>归并排序 | BinaryZone</title>
   
 
 
@@ -143,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,177 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/LeetCode148/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/08/LeetCode148/" itemprop="url">LeetCode148</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-08T23:48:43+08:00">
-                2019-07-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/链表/" itemprop="url" rel="index">
-                    <span itemprop="name">链表</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　在O(nlogn)时间复杂度和常数级空间复杂度下，对链表进行排序。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　时间复杂度为O(nlogn)，想到归并排序，但空间复杂度为常数级仍然存疑。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		&#125;</span><br><span class="line">        ListNode mid = getMid(head);</span><br><span class="line">        ListNode right = mid.next;</span><br><span class="line">        mid.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> merge(sortList(head), sortList(right));</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ListNode <span class="title">getMid</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">		ListNode fastNode = head;</span><br><span class="line">		ListNode slowNode = head;</span><br><span class="line">		<span class="keyword">while</span>(fastNode.next != <span class="keyword">null</span> &amp;&amp; fastNode.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">			fastNode = fastNode.next.next;</span><br><span class="line">			slowNode = slowNode.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> slowNode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode head1,ListNode head2)</span> </span>&#123;</span><br><span class="line">		ListNode node1 = head1;</span><br><span class="line">		ListNode node2 = head2;</span><br><span class="line">		ListNode head;</span><br><span class="line">		<span class="keyword">if</span> (node1.val &lt; node2.val) &#123;</span><br><span class="line">			head = node1;</span><br><span class="line">			node1 = node1.next;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			head = node2;</span><br><span class="line">			node2 = node2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		ListNode node = head;</span><br><span class="line">		<span class="keyword">while</span>(node1 != <span class="keyword">null</span> &amp;&amp; node2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (node1.val &lt; node2.val) &#123;</span><br><span class="line">				node.next = node1;</span><br><span class="line">				node1 = node1.next;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				node.next = node2;</span><br><span class="line">				node2 = node2.next;</span><br><span class="line">			&#125;</span><br><span class="line">			node = node.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (node1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">			node.next = node1;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (node2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">			node.next = node2;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><p>时间复杂度：<br>　　O(nlogn)。与数组的归并排序类似。<br>空间复杂度：<br>　　O(logn)。由于链表的归并排序不需要用到临时空间，故而起所需的空间仅仅为递归栈所消耗的空间。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -437,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/08/MergeSort/" itemprop="url">归并排序</a></h1>
+          <h1 class="post-title" itemprop="name headline">归并排序</h1>
         
 
         <div class="post-meta">
@@ -533,15 +363,11 @@
       
 
       
-        
-          
-            <h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　归并排序是分治法和递归的典型应用。归并排序分为两种实现方法：自顶向下和自底向上。自顶向下先归后并，<br>即先将待排序数组递归分割，然后将分割后的数组进行合并排序；而自底向上没有使用递归，而是直接使用迭代“手动”进行分割，<br>然后进行合并排序。自底向上由于没有使用递归，减少了栈空间的使用。</p>
+        <h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　归并排序是分治法和递归的典型应用。归并排序分为两种实现方法：自顶向下和自底向上。自顶向下先归后并，<br>即先将待排序数组递归分割，然后将分割后的数组进行合并排序；而自底向上没有使用递归，而是直接使用迭代“手动”进行分割，<br>然后进行合并排序。自底向上由于没有使用递归，减少了栈空间的使用。</p>
 <h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="top-to-bottom"><a href="#top-to-bottom" class="headerlink" title="top to bottom:"></a>top to bottom:</h3><p>　　<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">		split(arr, low, high);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (low + high)/<span class="number">2</span>;</span><br><span class="line">			split(arr, low, mid);</span><br><span class="line">			split(arr, mid+<span class="number">1</span>, high);</span><br><span class="line">			merge(arr, low, mid, high);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> [] arr,<span class="keyword">int</span> low,<span class="keyword">int</span> mid,<span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[high - low + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> i = low;</span><br><span class="line">		<span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= high) &#123;</span><br><span class="line">			<span class="keyword">if</span> (arr[i] &lt; arr[j]) &#123;</span><br><span class="line">				temp[k++] = arr[i++];</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				temp[k++] = arr[j++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(i &lt;= mid) &#123;</span><br><span class="line">			temp[k++] = arr[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(j &lt;= high) &#123;</span><br><span class="line">			temp[k++] = arr[j++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l = low;l &lt;= high;l++) &#123;</span><br><span class="line">			arr[l] = temp[l-low];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="bottom-to-top："><a href="#bottom-to-top：" class="headerlink" title="bottom to top："></a>bottom to top：</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mergeSort1</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k &lt; arr.length) &#123;</span><br><span class="line">		mergePass(arr, k);</span><br><span class="line">		k = k*<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mergePass</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(start + <span class="number">2</span>*k - <span class="number">1</span> &lt; arr.length) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = start + k -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> high = start + <span class="number">2</span>*k - <span class="number">1</span>;</span><br><span class="line">		merge(arr, start, mid, high);</span><br><span class="line">		start = start + <span class="number">2</span>*k;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (start + k - <span class="number">1</span> &lt; arr.length) &#123;</span><br><span class="line">		merge(arr, start, start + k - <span class="number">1</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> low,<span class="keyword">int</span> mid,<span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[high-low+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">int</span> i = low;</span><br><span class="line">	<span class="keyword">int</span> j = mid+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i &lt;= mid &amp;&amp; j&lt;=high) &#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &lt;= arr[j]) &#123;</span><br><span class="line">			temp[m++] = arr[i++];</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			temp[m++] = arr[j++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i &lt;= mid) &#123;</span><br><span class="line">		temp[m++] = arr[i++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j &lt;= high) &#123;</span><br><span class="line">		temp[m++] = arr[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k &lt; temp.length;k++) &#123;</span><br><span class="line">		arr[k+low] = temp[k];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><p>时间复杂度：<br>　　O(nlogn)。由于递归深度为logn，每层递归需要进行n次比较，所以时间复杂度为O(nlogn)。<br>空间复杂度：<br>　　O(n)。由于递归深度为logn，且在合并时会创建大小为n的临时数组，所以空间复杂度为O(n)+O(logn)，即O(n)。</p>
 <h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>　　《大话数据结构》<br>　　<a href="https://www.cnblogs.com/yongh/p/9965913.html" target="_blank" rel="noopener">https://www.cnblogs.com/yongh/p/9965913.html</a></p>
 
-          
-        
       
     </div>
     
@@ -558,179 +384,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/LeetCode141/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/07/LeetCode141/" itemprop="url">LeetCode141(判断是否为环形链表)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-07T23:25:06+08:00">
-                2019-07-07
-              </time>
+              <a href="/2019/07/07/LeetCode141/" rel="next" title="LeetCode141(判断是否为环形链表)">
+                <i class="fa fa-chevron-left"></i> LeetCode141(判断是否为环形链表)
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2019/07/08/LeetCode148/" rel="prev" title="LeetCode148">
+                LeetCode148 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/链表/" itemprop="url" rel="index">
-                    <span itemprop="name">链表</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从0开始）。如果 pos 是 -1，则在该链表中没有环。  </p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　典型的双指针问题，同时也可以利用额外空间来解决此问题。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h2 id="1-双指针"><a href="#1-双指针" class="headerlink" title="1.双指针"></a>1.双指针</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">       ListNode fastNode = head;</span><br><span class="line">       ListNode slowNode = head;</span><br><span class="line">       <span class="keyword">while</span>(fastNode != <span class="keyword">null</span> &amp;&amp; slowNode != <span class="keyword">null</span> &amp;&amp; fastNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">       	fastNode = fastNode.next.next;</span><br><span class="line">       	slowNode = slowNode.next;</span><br><span class="line">       	<span class="keyword">if</span> (fastNode == slowNode) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-利用Set（暂时不给出）"><a href="#2-利用Set（暂时不给出）" class="headerlink" title="2.利用Set（暂时不给出）"></a>2.利用Set（暂时不给出）</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -740,130 +419,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/第一篇博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/05/第一篇博客/" itemprop="url">第一篇博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-05T23:47:01+08:00">
-                2019-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&emsp;学习编程大半年了，一直想拥有自己的博客来记录学习的过程，今天终于动手实现了。<br>我是个喜欢记录，喜欢专研的人，学习过程中一直在网易云笔记记录学习过的重要知识。<br><img src="/images/1.png" alt><br>&emsp;记了这么多还是想着弄个博客。博客不仅能帮助自己记录学习的知识，还是展示自己的一个良好的平台。<br>&emsp;那就先立个小目标——至少两天更一篇文章，记录自己最近所学。</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -871,6 +431,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -891,8 +455,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -945,6 +518,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">1.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#top-to-bottom"><span class="nav-number">2.0.1.</span> <span class="nav-text">top to bottom:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bottom-to-top："><span class="nav-number">2.0.2.</span> <span class="nav-text">bottom to top：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#复杂度分析及总结："><span class="nav-number">3.</span> <span class="nav-text">复杂度分析及总结：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献："><span class="nav-number">4.</span> <span class="nav-text">参考文献：</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1078,6 +667,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
