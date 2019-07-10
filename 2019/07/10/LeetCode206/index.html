@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="题目：　　给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从0开始）。如果 pos 是 -1，则在该链表中没有环。   思路：　　典型的双指针问题，同时也可以利用额外空间来解决此问题。 代码：1.双指针123456789101112public boolean hasCycle(ListNode head) &amp;#123;">
+<meta name="description" content="题目：　　用循环和递归的方法实现反转链表 思路：　　由于在反转链表的过程中链表会断开，所以需要定义多指针，以记录后续节点。 代码：1.循环方法：1234567891011121314151617  public ListNode reverseList(ListNode head) &amp;#123;      if (head == null || head.next == null) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode141(判断是否为环形链表)">
-<meta property="og:url" content="http://yoursite.com/2019/07/07/LeetCode141/index.html">
+<meta property="og:title" content="LeetCode206（反转链表）">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/LeetCode206/index.html">
 <meta property="og:site_name" content="BinaryZone">
-<meta property="og:description" content="题目：　　给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从0开始）。如果 pos 是 -1，则在该链表中没有环。   思路：　　典型的双指针问题，同时也可以利用额外空间来解决此问题。 代码：1.双指针123456789101112public boolean hasCycle(ListNode head) &amp;#123;">
+<meta property="og:description" content="题目：　　用循环和递归的方法实现反转链表 思路：　　由于在反转链表的过程中链表会断开，所以需要定义多指针，以记录后续节点。 代码：1.循环方法：1234567891011121314151617  public ListNode reverseList(ListNode head) &amp;#123;      if (head == null || head.next == null) &amp;#123;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-08T15:50:33.340Z">
+<meta property="og:updated_time" content="2019-07-10T15:39:29.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode141(判断是否为环形链表)">
-<meta name="twitter:description" content="题目：　　给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从0开始）。如果 pos 是 -1，则在该链表中没有环。   思路：　　典型的双指针问题，同时也可以利用额外空间来解决此问题。 代码：1.双指针123456789101112public boolean hasCycle(ListNode head) &amp;#123;">
+<meta name="twitter:title" content="LeetCode206（反转链表）">
+<meta name="twitter:description" content="题目：　　用循环和递归的方法实现反转链表 思路：　　由于在反转链表的过程中链表会断开，所以需要定义多指针，以记录后续节点。 代码：1.循环方法：1234567891011121314151617  public ListNode reverseList(ListNode head) &amp;#123;      if (head == null || head.next == null) &amp;#123;">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/07/LeetCode141/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/LeetCode206/">
 
 
 
 
 
-  <title>LeetCode141(判断是否为环形链表) | BinaryZone</title>
+  <title>LeetCode206（反转链表） | BinaryZone</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/LeetCode141/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/LeetCode206/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wei Hao">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode141(判断是否为环形链表)</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode206（反转链表）</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-07T23:25:06+08:00">
-                2019-07-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-10T23:22:22+08:00">
+                2019-07-10
               </time>
             
 
@@ -363,11 +363,15 @@
       
 
       
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从0开始）。如果 pos 是 -1，则在该链表中没有环。  </p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　典型的双指针问题，同时也可以利用额外空间来解决此问题。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h2 id="1-双指针"><a href="#1-双指针" class="headerlink" title="1.双指针"></a>1.双指针</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">       ListNode fastNode = head;</span><br><span class="line">       ListNode slowNode = head;</span><br><span class="line">       <span class="keyword">while</span>(fastNode != <span class="keyword">null</span> &amp;&amp; slowNode != <span class="keyword">null</span> &amp;&amp; fastNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">       	fastNode = fastNode.next.next;</span><br><span class="line">       	slowNode = slowNode.next;</span><br><span class="line">       	<span class="keyword">if</span> (fastNode == slowNode) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　用循环和递归的方法实现反转链表</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　由于在反转链表的过程中链表会断开，所以需要定义多指针，以记录后续节点。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="1-循环方法："><a href="#1-循环方法：" class="headerlink" title="1.循环方法："></a>1.循环方法：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line">      ListNode curNode = head;</span><br><span class="line">      ListNode preNode = <span class="keyword">null</span>;</span><br><span class="line">      ListNode postNode = curNode.next;</span><br><span class="line">      <span class="keyword">while</span>(curNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">      	curNode.next = preNode;</span><br><span class="line">      	preNode = curNode;</span><br><span class="line">      	curNode = postNode;</span><br><span class="line">      	<span class="keyword">if</span> (postNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">      		postNode = postNode.next;</span><br><span class="line">	&#125;       	</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> preNode;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-利用Set（暂时不给出）"><a href="#2-利用Set（暂时不给出）" class="headerlink" title="2.利用Set（暂时不给出）"></a>2.利用Set（暂时不给出）</h2>
+<h3 id="2-递归方法："><a href="#2-递归方法：" class="headerlink" title="2.递归方法："></a>2.递归方法：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line">  	ListNode p = reverseList1(head.next);</span><br><span class="line">      head.next.next = head;</span><br><span class="line">      head.next = <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">return</span> p;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="1-循环方法：-1"><a href="#1-循环方法：-1" class="headerlink" title="1.循环方法："></a>1.循环方法：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+<h3 id="2-递归方法：-1"><a href="#2-递归方法：-1" class="headerlink" title="2.递归方法："></a>2.递归方法：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。由于递归栈可能会达到n。<br>　　总结：<br>　　　　递归方法较巧妙，它使反转链表从表尾开始，不需要多余指针防止链表断开。</p>
+
       
     </div>
     
@@ -391,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/05/第一篇博客/" rel="next" title="第一篇博客">
-                <i class="fa fa-chevron-left"></i> 第一篇博客
+              <a href="/2019/07/09/LeetCode169/" rel="next" title="LeetCode169（求众数）">
+                <i class="fa fa-chevron-left"></i> LeetCode169（求众数）
               </a>
             
           </div>
@@ -401,8 +405,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/08/MergeSort/" rel="prev" title="归并排序">
-                归并排序 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/10/LeetCode215/" rel="prev" title="LeetCode215">
+                LeetCode215 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -528,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-双指针"><span class="nav-number">3.1.</span> <span class="nav-text">1.双指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-利用Set（暂时不给出）"><span class="nav-number">3.2.</span> <span class="nav-text">2.利用Set（暂时不给出）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-循环方法："><span class="nav-number">3.0.1.</span> <span class="nav-text">1.循环方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-递归方法："><span class="nav-number">3.0.2.</span> <span class="nav-text">2.递归方法：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#复杂度分析及总结："><span class="nav-number">4.</span> <span class="nav-text">复杂度分析及总结：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-循环方法：-1"><span class="nav-number">4.0.1.</span> <span class="nav-text">1.循环方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-递归方法：-1"><span class="nav-number">4.0.2.</span> <span class="nav-text">2.递归方法：</span></a></li></ol></li></div>
             
 
           </div>
