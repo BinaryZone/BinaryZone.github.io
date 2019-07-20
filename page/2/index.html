@@ -262,6 +262,1021 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Offer18-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/Offer18-1/" itemprop="url">Offer18_1（删除链表节点）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T11:13:21+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/链表/" itemprop="url" rel="index">
+                    <span itemprop="name">链表</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定单向链表的头指针和一个结点指针，定义一个函数在O(1)时间删除该结点。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　正常删除链表节点的思路为找到待删除节点的前一个节点，使该节点的next指针指向待删除节点的下一个节点即可，但这种思路的时间复杂度为O(n)。与题目要求不符。根据<br>《剑指offer》的思路，可以将待删除节点的值修改为其下一个节点的值，然后将待删除节点的next指针指向下下个节点。<strong>但需要特别注意的是特殊情况：待删除的节点是尾节点；原链表只有一个节点。</strong></p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteNode</span><span class="params">(ListNode head,ListNode pToBeDeleted)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == <span class="keyword">null</span> || pToBeDeleted == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 删除的不是尾节点</span></span><br><span class="line">	<span class="keyword">if</span> (pToBeDeleted.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">		ListNode pNext = pToBeDeleted.next;</span><br><span class="line">		pToBeDeleted.val = pNext.val;</span><br><span class="line">		pToBeDeleted.next = pNext.next;</span><br><span class="line">		pNext = <span class="keyword">null</span>;</span><br><span class="line">	<span class="comment">// 删除的是尾节点并且原链表只有一个节点</span></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (head == pToBeDeleted) &#123;</span><br><span class="line">		pToBeDeleted = <span class="keyword">null</span>;</span><br><span class="line">		head = <span class="keyword">null</span>;</span><br><span class="line">	<span class="comment">// 删除的是尾节点并且原链表有多个节点</span></span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		ListNode node = head;</span><br><span class="line">		<span class="keyword">while</span>(node.next != pToBeDeleted) &#123;</span><br><span class="line">			node = node.next;</span><br><span class="line">		&#125;</span><br><span class="line">		node.next = <span class="keyword">null</span>;</span><br><span class="line">		pToBeDeleted = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Offer06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/Offer06/" itemprop="url">Offer06（从尾到头打印链表）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T10:52:00+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/链表/" itemprop="url" rel="index">
+                    <span itemprop="name">链表</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　倒序相关的题很容易想到递归或者利用栈。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead2</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">   	ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">   	<span class="keyword">return</span> help(listNode, arrayList);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">help</span><span class="params">(ListNode listNode,ArrayList&lt;Integer&gt; arrayList)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (listNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">		help(listNode.next, arrayList);</span><br><span class="line">		arrayList.add(listNode.val);</span><br><span class="line">	&#125;</span><br><span class="line">   	<span class="keyword">return</span> arrayList;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// 辅助栈</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead3</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">   	ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">   	Deque&lt;ListNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">   	<span class="keyword">while</span>(listNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">   		stack.push(listNode);</span><br><span class="line">   		listNode = listNode.next;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">while</span>(!stack.isEmpty()) &#123;</span><br><span class="line">   		arrayList.add(stack.pop().val);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> arrayList;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><h3 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
+<h3 id="辅助栈："><a href="#辅助栈：" class="headerlink" title="辅助栈："></a>辅助栈：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Offer05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/Offer05/" itemprop="url">Offer05（替换空格）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T10:14:34+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/字符串/" itemprop="url" rel="index">
+                    <span itemprop="name">字符串</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　最开始想到的思路是从头到尾遍历字符串，遇到字符串即替换，并插入%20，但字符串插入需要将后面的所有字符后移，算法复杂度较高。为优化时间复杂度，可以先统计出<br>替换空格后的字符串长度，然后从后到前插入。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从前往后</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">replaceSpace1</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">   	<span class="keyword">while</span>(i &lt; str.length()) &#123;</span><br><span class="line">   		<span class="keyword">if</span> (str.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">			str.replace(i, i+<span class="number">1</span>, <span class="string">"%"</span>);</span><br><span class="line">			str.insert(i+<span class="number">1</span>, <span class="string">"20"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">   		i++;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> str.toString();</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">// 从后往前</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">replaceSpace2</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; str.length();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> newLength = count*<span class="number">2</span> + str.length();</span><br><span class="line">	<span class="keyword">int</span> p1 = str.length() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> p2 = newLength - <span class="number">1</span>;</span><br><span class="line">	str.setLength(newLength);</span><br><span class="line">	<span class="keyword">while</span>(p1 &gt;=<span class="number">0</span> &amp;&amp; p2 &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(p1) == <span class="string">' '</span>) &#123;</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'0'</span>);</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'2'</span>);</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'%'</span>);</span><br><span class="line">			p1--;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			str.setCharAt(p2, str.charAt(p1));</span><br><span class="line">			p1--;</span><br><span class="line">			p2--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> str.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><h3 id="从前往后："><a href="#从前往后：" class="headerlink" title="从前往后："></a>从前往后：</h3><p>　　时间复杂度：<br>　　　　O(n**2)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+<h3 id="从后往前："><a href="#从后往前：" class="headerlink" title="从后往前："></a>从后往前：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>　　在合并数组或者字符串时，如果从前往后需要重复移动后面数字，可以考虑从后往前进行合并。这样能减少数字移动的次数，大大增加效率。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Offer04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/Offer04/" itemprop="url">Offer04（二维数组中的查找）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T09:39:59+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/数组/" itemprop="url" rel="index">
+                    <span itemprop="name">数组</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，<br>输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　此题很容易想到通过每行进行二分查找来解题，但此法时间复杂度较高。通过从右上角开始查找，如果该处数字大于要查找的数字，则可以排除该列，如果该处数字小于要<br>查找的数字，则可以排除该行，如果等于要查找的数字，则直接返回true。这种思路的时间复杂度明显高于通过每行进行二分法查找。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find1</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span> [][] array)</span> </span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line"> 	<span class="keyword">int</span> columns = array[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line"> 	<span class="keyword">while</span>(row &lt; array.length &amp;&amp; columns &gt;= <span class="number">0</span>) &#123;</span><br><span class="line"> 		<span class="keyword">if</span> (array[row][columns] == target) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (array[row][columns] &gt; target) &#123;</span><br><span class="line">	columns--;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	row++;</span><br><span class="line">&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="循环："><a href="#循环：" class="headerlink" title="循环："></a>循环：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/单例设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/15/单例设计模式/" itemprop="url">单例设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T19:20:27+08:00">
+                2019-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/创建型模式/" itemprop="url" rel="index">
+                    <span itemprop="name">创建型模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/创建型模式/单例设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">单例设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是单例设计模式？"><a href="#什么是单例设计模式？" class="headerlink" title="什么是单例设计模式？"></a>什么是单例设计模式？</h1><p>　　单例设计模式是一种创建型设计模式，该模式涉及到一个类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种<br>访问其唯一对象的方式，可以直接访问，不需要实例化该类的对象。</p>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>　　单例设计模式可以减少内存开销，提升运行效率，避免对资源的多重占用，并且可以实现数据共享。</p>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><p>　　实现单例模式的关键是：构造方法私有化；提供访问唯一对象的方法。<br>　　1.懒汉式（双检锁）<br>　　　　所谓懒汉式即在调用时在创建对象。由于添加锁，效率不高。<br>　　代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(Singleton.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　2.饿汉式：<br>　　　　利用类加载机制，解决了懒汉式中多线程访问不安全的问题，提高了效率，但有可能浪费内存。<br>　　代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton1 instance = <span class="keyword">new</span> Singleton1();</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h1><p>　　application对象</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/Offer03-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/15/Offer03-2/" itemprop="url">剑指offer03-2（重复数字）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T12:41:37+08:00">
+                2019-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/数组/" itemprop="url" rel="index">
+                    <span itemprop="name">数组</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　在一个长度为n+1的数组里的所有数字都在1~n的范围内，找出数组中的任意一个重复数字，但不能修改原数组。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　由于题目要求不可以修改原数组，故不可用先排序再找重复数字的思路，也不可用Offer03-1中的思路。因此可以考虑使用特殊的哈希表，<br>即同样大小的数组，将原数组的数字放在对应的索引处，但需要O(n)的空间。利用此题的特殊条件：所有数字都在1<del>n的范围内，可以想到利用二分法<br>寻找。n+1个数字在1</del>n的范围内，所有1<del>n中必定有重复数字，取1</del>n的中间值mid，若1<del>mid的数量大于mid，则重复数字必定在1</del>mid中，这便是二分法<br>的典型思路。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="二分法："><a href="#二分法：" class="headerlink" title="二分法："></a>二分法：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDuplication</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> start = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> end = length - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(start &lt;= end) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (start + end) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> count = countRange(nums, start, mid);</span><br><span class="line">		<span class="keyword">if</span> (start == end) &#123;</span><br><span class="line">			<span class="keyword">if</span> (count &gt; <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> start;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (count &gt; mid - start + <span class="number">1</span>) &#123;</span><br><span class="line">			end = mid;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			start = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countRange</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] &gt;= start &amp;&amp; nums[i] &lt;= end) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="循环："><a href="#循环：" class="headerlink" title="循环："></a>循环：</h3><p>　　时间复杂度：<br>　　　　O(nlogn)。<br>　　空间复杂度：<br>　　　　O(1)。<br>　　与利用哈希表相比，此方法用时间换取了空间。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/Offer03-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -921,1038 +1936,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/设计模式-代理模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/13/设计模式-代理模式/" itemprop="url">设计模式-代理模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T14:32:31+08:00">
-                2019-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/结构型模式/" itemprop="url" rel="index">
-                    <span itemprop="name">结构型模式</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/结构型模式/代理模式/" itemprop="url" rel="index">
-                    <span itemprop="name">代理模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是静态代理模式？"><a href="#什么是静态代理模式？" class="headerlink" title="什么是静态代理模式？"></a>什么是静态代理模式？</h1><p>　　在代理模式中，用一个类代表另一个类的功能，从而达到控制对真实对象的访问的目的。静态代理模式的代理类由程序员编写。</p>
-<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>　　静态代理设计模式可以保护真实对象，让真实对象的职责更加清晰，同时使对象具有高可扩展性。<br>　　但如果代理功能较多，代理类中需要编写较多的方法，同时代理模式可能会使效率下降。</p>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><p>UML图：<br><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.jpg" alt></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 功能接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 真实类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line">	String fileName;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">		loadFromDisk(fileName);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Displaying"</span> + fileName);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadFromDisk</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Loading"</span> + fileName);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> RealImage realImage;</span><br><span class="line">	<span class="keyword">private</span> String fileName;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (realImage == <span class="keyword">null</span>) &#123;</span><br><span class="line">			realImage = <span class="keyword">new</span> RealImage(fileName);</span><br><span class="line">		&#125;</span><br><span class="line">		realImage.display();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Image image = <span class="keyword">new</span> ProxyImage(<span class="string">"test.jpg"</span>);</span><br><span class="line">		image.display();</span><br><span class="line">		System.out.println(<span class="string">"----"</span>);</span><br><span class="line">		image.display();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h1 id="什么是JDK动态代理模式？"><a href="#什么是JDK动态代理模式？" class="headerlink" title="什么是JDK动态代理模式？"></a>什么是JDK动态代理模式？</h1><p>　　相比于静态代理，JDK动态代理解决了静态代理模式频繁编写代理功能的缺点。</p>
-<h1 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　其不需要自己实现代理类，但由于使用了反射机制，效率不高，且真实对象需要实现接口。</p>
-<h1 id="实现：-1"><a href="#实现：-1" class="headerlink" title="实现："></a>实现：</h1><p>　　实现时需要用到java.lang.reflect.Proxy和java.lang.reflect.InvocationHandler，前者用来动态生成代理类和对象，后者是处理器接口，<br>用来实现具体的逻辑，可以通过invoke方法实现对真实角色的代理访问。<br>　　具体实现原理为：Proxy类通过newProxyInstance动态生成了一个代理类，当执行代理方法时，代理类直接调用了InvocationHandler处理器（相当于静态代理）<br>对象的invoke方法，并把通过反射产生的相应方法当做参数传入，InvocationHandler加入逻辑后通过反射调用真实对象的方法：method.invoke(readSubject, args);</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 功能接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sellBooks</span><span class="params">()</span> </span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 真实类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sellBooks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"买书"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"说话"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"张三"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 处理器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line">	Subject readSubject;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(Subject readSubject)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.readSubject = readSubject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (method.getName().equals(<span class="string">"sellBooks"</span>)) &#123;</span><br><span class="line">			<span class="keyword">int</span> invoke = (<span class="keyword">int</span>) method.invoke(readSubject, args);</span><br><span class="line">			System.out.println(<span class="string">"调用买书方法"</span>);</span><br><span class="line">			<span class="keyword">return</span> invoke;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			String string = (String) method.invoke(readSubject, args);</span><br><span class="line">			System.out.println(<span class="string">"调用说话方法"</span>);</span><br><span class="line">			<span class="keyword">return</span> string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Subject realSubject = <span class="keyword">new</span> RealSubject();</span><br><span class="line">		MyInvocationHandler myInvocationHandler = <span class="keyword">new</span> MyInvocationHandler(realSubject);</span><br><span class="line">		Subject proxyClass = (Subject) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), <span class="keyword">new</span> Class[] &#123;Subject.class&#125;, myInvocationHandler);</span><br><span class="line">		proxyClass.sellBooks();</span><br><span class="line">		proxyClass.speak();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h1><p>　　spring中的aop</p>
-<h1 id="什么是cglib动态代理？"><a href="#什么是cglib动态代理？" class="headerlink" title="什么是cglib动态代理？"></a>什么是cglib动态代理？</h1><pre><code>cglib动态代理通过继承要被动代理的类，重写父类的方法，在子类方法中加入业务逻辑代码，从而实现代理。</code></pre><p>　　首先要明白cglib是什么。它是一个强大的代码生成类库，它可以在运行期扩展Java类与实现Java接口。其底层依赖asm库实现。asm库<br>是一个字节码处理类库，它可以转换字节码并生成新的类。</p>
-<h1 id="优缺点：-1"><a href="#优缺点：-1" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　JDK动态代理要求被代理对象实现了接口，而cglib动态代理则不需要被代理对象实现接口，并且由于JDK动态代理使用了反射机制，cglib运行效率会更高。</p>
-<h1 id="实现：-2"><a href="#实现：-2" class="headerlink" title="实现："></a>实现：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 被代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 可以被代理</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师吃饭"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 不会被子类覆盖</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师正在工作"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 不会被子类覆盖</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师在玩游戏"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CglibProxy</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object target;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CglibProxy</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.target = target;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object arg0, Method arg1, Object[] arg2, MethodProxy arg3)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"前置通知"</span>);</span><br><span class="line">		Object result = arg1.invoke(target);</span><br><span class="line">		System.out.println(<span class="string">"后置通知"</span>);</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getProxy</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">		enhancer.setSuperclass(target.getClass());</span><br><span class="line">		enhancer.setCallback(<span class="keyword">new</span> CglibProxy(target));</span><br><span class="line">		<span class="keyword">return</span> enhancer.create();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Engineer engineerProxy = (Engineer) CglibProxy.getProxy(<span class="keyword">new</span> Engineer());</span><br><span class="line">		engineerProxy.eat();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="应用场景：-1"><a href="#应用场景：-1" class="headerlink" title="应用场景："></a>应用场景：</h1><p>　　spring中的aop
-　　</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://www.runoob.com" target="_blank" rel="noopener">https://www.runoob.com</a><br><a href="https://segmentfault.com/a/1190000018923333?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018923333?utm_source=tag-newest</a><br><a href="http://www.chenglong.ren/2019/02/18/cglib%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%8E%9F%E7%90%86%E7%9A%84%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://www.chenglong.ren/2019/02/18/cglib%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%8E%9F%E7%90%86%E7%9A%84%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/LeetCode344/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/13/LeetCode344/" itemprop="url">LeetCode344（字符串交换1）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T14:17:45+08:00">
-                2019-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/字符串/" itemprop="url" rel="index">
-                    <span itemprop="name">字符串</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。<br>　　不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　循环交换两端字符即可，注意可以使用异或运算交换增加运算效率，同时也可以使用递归实现。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="循环："><a href="#循环：" class="headerlink" title="循环："></a>循环：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="keyword">char</span>[] s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> r = s.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">       	s[l] ^= s[r];</span><br><span class="line">       	s[r] ^= s[l];</span><br><span class="line">       	s[l++] ^= s[r--];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="循环：-1"><a href="#循环：-1" class="headerlink" title="循环："></a>循环：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/LeetCode236/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/12/LeetCode236/" itemprop="url">LeetCode236（二叉树的最近公共祖先）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T14:15:35+08:00">
-                2019-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/二叉树/" itemprop="url" rel="index">
-                    <span itemprop="name">二叉树</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　此题最开始无法想出思路。结合官方解答后做出。同时递归法难想到，比较巧妙，难理解。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode236</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TreeNode LCA;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        recurseTree(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> LCA;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">recurseTree</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="keyword">int</span> left = recurseTree(root.left, p, q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> right = recurseTree(root.right, p, q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> mid = (root == p || root == q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">if</span> (left + right + mid &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.LCA = root;</span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="keyword">return</span> (left + right + mid) &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="递归：-1"><a href="#递归：-1" class="headerlink" title="递归："></a>递归：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/LeetCode235/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/12/LeetCode235/" itemprop="url">LeetCode235（二叉搜索树的最近公共祖先）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T14:06:40+08:00">
-                2019-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/二叉树/" itemprop="url" rel="index">
-                    <span itemprop="name">二叉树</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　二叉树一般会用到递归或遍历。结合此题，由于该树是二叉搜索树，最近公共祖先节点的特点即其节点的值大于<br>等于p（左边）节点的值，小于等于q（右边）节点的值。由此可以写出递归或者循环代码。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="1-递归："><a href="#1-递归：" class="headerlink" title="1.递归："></a>1.递归：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (p.val &gt; root.val &amp;&amp; q.val &gt; root.val) &#123;</span><br><span class="line">	<span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (p.val &lt; root.val &amp;&amp; q.val &lt; root.val) &#123;</span><br><span class="line">	<span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-循环："><a href="#2-循环：" class="headerlink" title="2.循环："></a>2.循环：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor1</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line"> 	TreeNode node = root;</span><br><span class="line"> 	<span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line"> 		<span class="keyword">if</span> (p.val &gt; node.val &amp;&amp; q.val &gt; node.val) &#123;</span><br><span class="line">	node = node.right;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (p.val &lt; node.val &amp;&amp; q.val &lt; node.val) &#123;</span><br><span class="line">	node = node.left;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"输入不合法"</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="1-递归：-1"><a href="#1-递归：-1" class="headerlink" title="1.递归："></a>1.递归：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
-<h3 id="2-循环：-1"><a href="#2-循环：-1" class="headerlink" title="2.循环："></a>2.循环：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/LeetCode231/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/12/LeetCode231/" itemprop="url">LeetCode231（2的幂）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T14:02:14+08:00">
-                2019-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/位运算/" itemprop="url" rel="index">
-                    <span itemprop="name">位运算</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个整数，编写一个函数来判断它是否是 2 的幂次方。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　与2相关的数字常常会用到位运算。2的幂转为2进制数后有一个特点，即仅有一位为1，故可利用此特点来判断一个数是否为2的幂。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="位运算："><a href="#位运算：" class="headerlink" title="位运算："></a>位运算：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &gt; <span class="number">0</span> &amp;&amp; (n &amp; (n-<span class="number">1</span>))==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/LeetCode230/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/12/LeetCode230/" itemprop="url">LeetCode230（二叉搜索树中第k小的元素）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T13:51:22+08:00">
-                2019-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/二叉树/" itemprop="url" rel="index">
-                    <span itemprop="name">二叉树</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个二叉搜索树，编写一个函数 kthSmallest 来查找其中第 k 个最小的元素。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　题目中二叉树为二叉搜索树，很容易想到将数中序遍历，得到的顺序即为排序顺序，从而很容易就得到第k小的元素。而实现中序遍历<br>有递归和循环两种写法。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="1-递归："><a href="#1-递归：" class="headerlink" title="1.递归："></a>1.递归：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 递归</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">       count = k;</span><br><span class="line">       inTraverse(root);</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inTraverse</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">   		inTraverse(root.left);</span><br><span class="line">   		count--;</span><br><span class="line">   		<span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">			res = root.val;</span><br><span class="line">		&#125;</span><br><span class="line">   		inTraverse(root.right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-排序："><a href="#2-排序：" class="headerlink" title="2.排序："></a>2.排序：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest1</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line"> 	Deque&lt;TreeNode&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"> 	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"> 	TreeNode node = root;</span><br><span class="line"> 	<span class="keyword">while</span>(node != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line"> 		<span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line"> 			stack.push(node);</span><br><span class="line"> 			node = node.left;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">if</span> (!stack.isEmpty()) &#123;</span><br><span class="line">	node = stack.pop();</span><br><span class="line">	count++;</span><br><span class="line">	<span class="keyword">if</span> (count == k) &#123;</span><br><span class="line">		<span class="keyword">return</span> node.val;</span><br><span class="line">	&#125;</span><br><span class="line">	node = node.right;</span><br><span class="line">&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"参数错误"</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="1-递归：-1"><a href="#1-递归：-1" class="headerlink" title="1.递归："></a>1.递归：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
-<h3 id="2-循环："><a href="#2-循环：" class="headerlink" title="2.循环："></a>2.循环：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>　　注意递归写法中需要利用全局变量记录第k小的值。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2000,7 +1988,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2011,7 +1999,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2022,7 +2010,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
