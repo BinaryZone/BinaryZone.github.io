@@ -262,6 +262,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/生产者消费者模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/22/生产者消费者模式/" itemprop="url">生产者消费者模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-22T16:52:38+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">后端技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端技术/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端技术/Java基础/高并发/" itemprop="url" rel="index">
+                    <span itemprop="name">高并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>　　最近在学习操作系统这门课程，在学习的过程中遇到了生产者与消费者模式这个知识。同样的，在以前学习Java多线程编程时也遇到过相同的知识点。这让我<br>不得不对这个知识点深入的理一理。<br>　　什么是消费者与生产者模式？在操作系统这门课中，这是一个描述进程之间的问题。系统中有一组生产者进程和一组消费者进程，生产者进程每次生产一个产品<br>放入缓冲区，消费者进程每次从缓冲区中取出一个产品并使用。生产者与消费者共享一个初始为空，大小为n的缓冲区。而且两个进程要满足：只有缓冲区没满时，<br>生产者才能把产品放入缓冲区，否则阻塞等待；同样只有缓冲区不为空时，消费者才能从中取出产品，否则阻塞等待。<br>　　综上所述，我们必须使这两个进程满足：1.互斥地访问缓冲区；2.两个进程之间保证两个同步关系：缓冲区满时，需要消费者消费后生产者才能生产；缓冲区为<br>空时，生产者生产后，消费者才能消费。理清了进程之间的关系后，即可利用信号量进制进行实现。<br>　　而在多线程中的消费者与生产者问题仅仅是将进程换做了线程，实现方式也由操作系统中的原语实现方式该为了Java代码方式实现。</p>
+<h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><p>1.synchronized、wait和notify方式实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerConsumerWithWaitNotify</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Resource resource = <span class="keyword">new</span> Resource();</span><br><span class="line">		ProducerThread p1 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ProducerThread p2 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ProducerThread p3 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ConsumerThread c1 = <span class="keyword">new</span> ConsumerThread(resource);</span><br><span class="line"><span class="comment">//		ConsumerThread c2 = new ConsumerThread(resource);</span></span><br><span class="line"><span class="comment">//		ConsumerThread c3 = new ConsumerThread(resource);</span></span><br><span class="line">		<span class="keyword">new</span> Thread(p1).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(p2).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(p3).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(c1).start();</span><br><span class="line"><span class="comment">//		new Thread(c2).start();</span></span><br><span class="line"><span class="comment">//		new Thread(c3).start();</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 公共资源类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> aaa3</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span></span>&#123;</span><br><span class="line">	<span class="comment">// 当前缓存区中的初始资源数</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 当前缓冲区中剩余空间</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">// synchronized加锁使得多个线程只能互斥地访问缓存区</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			num--;</span><br><span class="line">			System.out.println(<span class="string">"消费者"</span> + Thread.currentThread().getName()+</span><br><span class="line">					<span class="string">"消耗一件资源"</span> + <span class="string">"当前缓冲区还有"</span>+num+<span class="string">"资源"</span>);</span><br><span class="line">			<span class="comment">// 相当于原语V操作</span></span><br><span class="line">			notifyAll();</span><br><span class="line">		<span class="comment">// 相当于原语P操作</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				wait();</span><br><span class="line">				System.out.println(<span class="string">"消费者"</span> + Thread.currentThread().getName()+<span class="string">"线程进入等待状态"</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (num &lt; size) &#123;</span><br><span class="line">			num++;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">"生产一个资源，当前缓冲区有"</span>+num+<span class="string">"个资源"</span>);</span><br><span class="line">			notifyAll();</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				wait();</span><br><span class="line">				System.out.println(Thread.currentThread().getName()+<span class="string">"线程进入等待状态"</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Resource resource;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConsumerThread</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.resource = resource;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			resource.remove();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Resource resource;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ProducerThread</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.resource = resource;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			resource.add();;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>《王道操作系统考研》<br><a href="https://www.cnblogs.com/fankongkong/p/7339848.html" target="_blank" rel="noopener">https://www.cnblogs.com/fankongkong/p/7339848.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/动态规划专题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,6 +472,39 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/其他算法/" itemprop="url" rel="index">
+                    <span itemprop="name">其他算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -333,7 +534,22 @@
       
         
           
-            
+            <h1 id="动态规划概述："><a href="#动态规划概述：" class="headerlink" title="动态规划概述："></a>动态规划概述：</h1><p>　　动态规划是运筹学的一个分支，是求解决策过程最优化的数学方法。它利用各阶段之间的关系，逐个求解，最终求得全局最优解。在设计动态规划算法时，<br>需要确认原问题与子问题、动态规划状态、边界状态结值、状态转移方程等关键要素。</p>
+<h1 id="动态规划题目常见类型："><a href="#动态规划题目常见类型：" class="headerlink" title="动态规划题目常见类型："></a>动态规划题目常见类型：</h1><p>　　1.计数型<br>　　　　有多少种方式/方法…？<br>　　2.求最值<br>　　3.求存在性<br>　　　　是否能？能不能？（true or false）</p>
+<h1 id="求解思路与步骤："><a href="#求解思路与步骤：" class="headerlink" title="求解思路与步骤："></a>求解思路与步骤：</h1><p>　　1.分析题目是否是动态规划题目<br>　　2.确定原问题与子问题<br>　　3.确定状态<br>　　4.确定边界状态的值<br>　　5.找出状态转移方程<br>　　6.code<br>　　注意：在解题过程可以先枚举找出状态转移关系，同时注意应用“选与不选”的思路</p>
+<h1 id="例题分析："><a href="#例题分析：" class="headerlink" title="例题分析："></a>例题分析：</h1><p>　　1.斐波那契数列<br>　　2.爬楼梯（LeetCode70）<br>　　　　分析：计数型问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求n阶台阶的走法，子问题为求1阶台阶、2阶台阶、…、n-1阶台阶的走法<br>　　　　确定状态：此题状态单一，第i个状态即为i阶台阶的所有走法数量。<br>　　　　边界状态：i=1时，dp[i]=1，i=2时，dp[i]=2；<br>　　　　状态转移方程：dp[i] = dp[i-1]+dp[i-2];</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	dp[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt; n;i++) &#123;</span><br><span class="line">		dp[i] = dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　3.打家劫舍<br>　　　　你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<br>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能<br>够偷窃到的最高金额。<br>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求到第n个房屋的最大收益，子问题为求第1个房屋的最大收益、第2个房屋的最大收益、…、第n-1个房屋的最大收益<br>　　　　确定状态：此题状态单一，第i个状态即为第i个房屋的最大收益.<br>　　　　边界状态：i=1时，dp[i]=nums[0]，i=2时，dp[i]=Math.max(nums[0], nums[1])；<br>　　　　状态转移方程：dp[i] = Math.max(dp[i-1], nums[i] + dp[i-2])(包含第i个房屋偷或者不偷两种选择);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">2</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">      dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">      dp[<span class="number">1</span>] = Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">      	dp[i] = Math.max(dp[i-<span class="number">1</span>], nums[i] + dp[i-<span class="number">2</span>]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dp[dp.length-<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　4.最大字段和<br>　　　　给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：<strong>原问题为求以第n个数字结尾的最大字段和，子问题为求以第1、2、…、n-1个数字结尾的最大字段和。注意dp[n]并不是前n个数字组成的数组的最大字段和，即不是最终答案</strong><br>　　　　确定状态：第i个状态即为以第i个数字结尾的最大字段和<br>　　　　边界状态：i=1时，dp[i]=nums[0]<br>　　　　状态转移方程：dp[i] = nums[i](dp[i-1] &lt;= 0) or num[i]+dp<a href="dp[i-1]>0">i-1</a>(包含第i个房屋偷或者不偷两种选择);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</span><br><span class="line">		<span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			sum += num;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			sum = num;</span><br><span class="line">		&#125;</span><br><span class="line">		ans = Math.max(ans, sum);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　5.零钱兑换<br>　　　　给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能<br>组成总金额，返回 -1。</p>
+<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为总金额为n时，最少需要的硬币个数，子问题为总金额为1、2、…n-1时，最少需要的硬币个数<br>　　　　确定状态：第i个状态即为总金额为i时最少所需的硬币个数。<br>　　　　边界状态：i=0时，dp[i]=0<br>　　　　状态转移方程：dp[i] = min(dp[i-ooins[j]])+1;<br>　　　　注意：此题不能从数组着手，从数组着手无法确定状态转移方程。同时注意考虑有的金额无法凑出的情况，此时需要返回-1。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coinChange1</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[amount+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; amount+<span class="number">1</span>;i++) &#123;</span><br><span class="line">    	dp[i] = -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; amount+<span class="number">1</span>;i++) &#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; coins.length;j++) &#123;</span><br><span class="line">    		<span class="keyword">if</span> (i - coins[j] &gt;= <span class="number">0</span> &amp;&amp; dp[i-coins[j]] != -<span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> (dp[i] == -<span class="number">1</span> || dp[i] &gt; dp[i - coins[j]] + <span class="number">1</span>) &#123;</span><br><span class="line">		dp[i] = dp[i - coins[j]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1719,174 +1935,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Offer23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/Offer23/" itemprop="url">Offer23（环形链表的头节点）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T10:05:16+08:00">
-                2019-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
-                    <span itemprop="name">剑指offer</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/剑指offer/链表/" itemprop="url" rel="index">
-                    <span itemprop="name">链表</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　此题包含两个问题：1.判断链表中是否有环；2.若有环，找出环的入口节点。对于此问题，无论是判断是否有环还是找入口节点，都可以使用哈希表（Set）<br>解出，但需要O(n)的空间复杂度。现在来优化空间复杂度。判断是否有环可以使用快慢双指针（慢指针一次走一步，快指针一次走两步），若有环则两指针必定<br>会相遇。对于寻找入口节点，需要进行推导。假设环外节点数为F，环内节点数为C，当慢指针走到入口节点处时，慢指针走了F步，同样快指针在环内一定走了F<br>步，若慢指针继续走C-F步，则两指针必定相遇（快指针走2（C-F）步），即两指针必定相遇在C-F处，此时再定义一个指针指向头节点，当头节点指针与相遇节点<br>指针相遇时，相遇的节点即为入口节点。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> ListNode <span class="title">EntryNodeOfLoop</span><span class="params">(ListNode pHead)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     ListNode fastNode = pHead;</span><br><span class="line">     ListNode slowNode = pHead;</span><br><span class="line">     <span class="keyword">while</span>(fastNode != <span class="keyword">null</span> &amp;&amp; fastNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">     	fastNode = fastNode.next.next;</span><br><span class="line">     	slowNode = slowNode.next;</span><br><span class="line">     	<span class="keyword">if</span> (fastNode == slowNode) &#123;</span><br><span class="line">	<span class="keyword">while</span>(pHead != fastNode) &#123;</span><br><span class="line">		pHead = pHead.next;</span><br><span class="line">		fastNode = fastNode.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fastNode;</span><br><span class="line">&#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1939,7 +1987,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1950,7 +1998,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1961,7 +2009,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
