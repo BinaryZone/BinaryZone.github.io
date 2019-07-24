@@ -262,6 +262,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/图相关算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/23/图相关算法/" itemprop="url">图相关算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T23:21:02+08:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/其他算法/" itemprop="url" rel="index">
+                    <span itemprop="name">其他算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="图简介："><a href="#图简介：" class="headerlink" title="图简介："></a>图简介：</h1><h1 id="深度优先搜索（DFS）："><a href="#深度优先搜索（DFS）：" class="headerlink" title="深度优先搜索（DFS）："></a>深度优先搜索（DFS）：</h1><p>　　深度优先遍历，从初始访问结点出发，初始访问结点可能有多个邻接结点，深度优先遍历的策略就是首先访问第一个邻接结点，然后再以这个被访问的邻接<br>结点作为初始结点，访问它的第一个邻接结点。可以理解为：每次都在访问完当前结点后首先访问当前结点的第一个结点。<br>　　很明显，深度优先遍历是一个<strong>递归</strong>的过程。</p>
+<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h4><p>　　1.访问初始结点v，并标记结点v为已访问<br>　　2.查找v的第一个邻接结点w<br>　　3.若w存在，则继续执行4，如果w不存在，则回到第一步，将从v的下一个节点继续。<br>　　4.若w未被访问，对w进行深度优先遍历递归<br>　　5.查找节点v的w邻接结点的下一个邻接结点，转到步骤3.</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 存储定点集合</span></span><br><span class="line">	<span class="keyword">private</span> ArrayList&lt;String&gt; vertexList;</span><br><span class="line">	<span class="comment">// 存储图对应的邻接矩阵</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] edges;</span><br><span class="line">	<span class="comment">// 表示边的数目</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> numOfEdges;</span><br><span class="line">	<span class="comment">// 标记结点是否被访问过</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span>[] isVisited;</span><br><span class="line">	<span class="comment">// 构造器</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		vertexList = <span class="keyword">new</span> ArrayList&lt;&gt;(n);</span><br><span class="line">		edges = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		numOfEdges = <span class="number">0</span>;</span><br><span class="line">		isVisited = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Graph graph = <span class="keyword">new</span> Graph(<span class="number">5</span>);</span><br><span class="line">		String[] s = &#123;<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>&#125;;</span><br><span class="line">		<span class="keyword">for</span>(String str:s) &#123;</span><br><span class="line">			graph.insertVertex(str);</span><br><span class="line">		&#125;</span><br><span class="line">		graph.insertEdge(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">		graph.insertEdge(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">		graph.insertEdge(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">		graph.insertEdge(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">		graph.insertEdge(<span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">		System.out.println(<span class="string">"深度遍历："</span>);</span><br><span class="line">		graph.dfs();</span><br><span class="line"> 	&#125;</span><br><span class="line">	<span class="comment">// 得到第一个邻接结点的下标w</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirstNeighbor</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; vertexList.size();j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (edges[index][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 根据前一个邻接结点的下标来获取下一个邻接结点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNextNeighbor</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = v2+<span class="number">1</span>;j &lt; vertexList.size();j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (edges[v1][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 深度优先遍历</span></span><br><span class="line">	<span class="comment">// 初始结点i = 0</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">boolean</span>[] isVisited,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 首先输出初始结点</span></span><br><span class="line">		System.out.print(vertexList.get(i) + <span class="string">" "</span>);</span><br><span class="line">		<span class="comment">// 将结点设置为已访问</span></span><br><span class="line">		isVisited[i] = <span class="keyword">true</span>;</span><br><span class="line">		<span class="comment">// 查找结点i的第一个邻接结点</span></span><br><span class="line">		<span class="keyword">int</span> w = getFirstNeighbor(i);</span><br><span class="line">		<span class="keyword">while</span>(w != -<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!isVisited[w]) &#123;</span><br><span class="line">				dfs(isVisited, w);</span><br><span class="line">			&#125;</span><br><span class="line">			w = getNextNeighbor(i, w);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 对dfs进行一个重载，遍历我们所有的结点，并进行dfs</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 遍历所有的结点，进行dfs(回溯)</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; vertexList.size();i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!isVisited[i]) &#123;</span><br><span class="line">				dfs(isVisited,i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 插入节点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertVertex</span><span class="params">(String vertex)</span> </span>&#123;</span><br><span class="line">		vertexList.add(vertex);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 添加边</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertEdge</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2,<span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">		edges[v1][v2] = weight;</span><br><span class="line">		edges[v1][v2] = weight;</span><br><span class="line">		numOfEdges++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/生产者消费者模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -378,7 +532,7 @@
         
           
             <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>　　最近在学习操作系统这门课程，在学习的过程中遇到了生产者与消费者模式这个知识。同样的，在以前学习Java多线程编程时也遇到过相同的知识点。这让我<br>不得不对这个知识点深入的理一理。<br>　　什么是消费者与生产者模式？在操作系统这门课中，这是一个描述进程之间的问题。系统中有一组生产者进程和一组消费者进程，生产者进程每次生产一个产品<br>放入缓冲区，消费者进程每次从缓冲区中取出一个产品并使用。生产者与消费者共享一个初始为空，大小为n的缓冲区。而且两个进程要满足：只有缓冲区没满时，<br>生产者才能把产品放入缓冲区，否则阻塞等待；同样只有缓冲区不为空时，消费者才能从中取出产品，否则阻塞等待。<br>　　综上所述，我们必须使这两个进程满足：1.互斥地访问缓冲区；2.两个进程之间保证两个同步关系：缓冲区满时，需要消费者消费后生产者才能生产；缓冲区为<br>空时，生产者生产后，消费者才能消费。理清了进程之间的关系后，即可利用信号量进制进行实现。<br>　　而在多线程中的消费者与生产者问题仅仅是将进程换做了线程，实现方式也由操作系统中的原语实现方式该为了Java代码方式实现。</p>
-<h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><p>1.synchronized、wait和notify方式实现</p>
+<h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><p>1.synchronized、wait和notify方式实现（管程）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerConsumerWithWaitNotify</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Resource resource = <span class="keyword">new</span> Resource();</span><br><span class="line">		ProducerThread p1 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ProducerThread p2 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ProducerThread p3 = <span class="keyword">new</span> ProducerThread(resource);</span><br><span class="line">		ConsumerThread c1 = <span class="keyword">new</span> ConsumerThread(resource);</span><br><span class="line"><span class="comment">//		ConsumerThread c2 = new ConsumerThread(resource);</span></span><br><span class="line"><span class="comment">//		ConsumerThread c3 = new ConsumerThread(resource);</span></span><br><span class="line">		<span class="keyword">new</span> Thread(p1).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(p2).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(p3).start();</span><br><span class="line">		<span class="keyword">new</span> Thread(c1).start();</span><br><span class="line"><span class="comment">//		new Thread(c2).start();</span></span><br><span class="line"><span class="comment">//		new Thread(c3).start();</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 公共资源类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> aaa3</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span></span>&#123;</span><br><span class="line">	<span class="comment">// 当前缓存区中的初始资源数</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 当前缓冲区中剩余空间</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">// synchronized加锁使得多个线程只能互斥地访问缓存区</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			num--;</span><br><span class="line">			System.out.println(<span class="string">"消费者"</span> + Thread.currentThread().getName()+</span><br><span class="line">					<span class="string">"消耗一件资源"</span> + <span class="string">"当前缓冲区还有"</span>+num+<span class="string">"资源"</span>);</span><br><span class="line">			<span class="comment">// 相当于原语V操作</span></span><br><span class="line">			notifyAll();</span><br><span class="line">		<span class="comment">// 相当于原语P操作</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				wait();</span><br><span class="line">				System.out.println(<span class="string">"消费者"</span> + Thread.currentThread().getName()+<span class="string">"线程进入等待状态"</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (num &lt; size) &#123;</span><br><span class="line">			num++;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">"生产一个资源，当前缓冲区有"</span>+num+<span class="string">"个资源"</span>);</span><br><span class="line">			notifyAll();</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				wait();</span><br><span class="line">				System.out.println(Thread.currentThread().getName()+<span class="string">"线程进入等待状态"</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Resource resource;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConsumerThread</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.resource = resource;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			resource.remove();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Resource resource;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ProducerThread</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.resource = resource;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			resource.add();;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>《王道操作系统考研》<br><a href="https://www.cnblogs.com/fankongkong/p/7339848.html" target="_blank" rel="noopener">https://www.cnblogs.com/fankongkong/p/7339848.html</a></p>
@@ -555,8 +709,12 @@
 <p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求以第n个数为结尾的最长上升子序列的长度，子问题为求以第1、2、…、n-1个数为结尾的最长上升子序列的长度。<br>　　　　确定状态：第i个状态即为以第i个数为结尾的最长上升子序列的长度。<br>　　　　边界状态：i=0时，dp[i]=1<br>　　　　状态转移方程：dp[i] = max(dp[0]+1(num[i]&gt;num[0]),dp[1]+1(num[i]&gt;num[1])…dp[i-1]+1(num[i-1]&gt;num[i-1]))<br>　　　　注意：<strong>此题与最大字段和类似，dp[i]并不表示最终的结果。很多动态规划题都是如此</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	dp[i] = <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> result = dp[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; i;j++) &#123;</span><br><span class="line">       		<span class="keyword">if</span> (nums[i] &gt; nums[j] &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">       	<span class="keyword">if</span> (result &lt; dp[i]) &#123;</span><br><span class="line">			result = dp[i];</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<p>　　　　优化：尽管使用了动态规划，但此题的时间复杂度仍然有O(n2)，时间复杂度偏高。我们可以采用动态规划+二分查找的方式进行优化。<br>　　　　我们利用一个数组dp[i]存储到第i个数字的最长上升子序列，因此，循环过程中，每到来一个数字m，如果该数字大于数组末尾数字，则可直接添加在<br>数组的末尾，否则的话，我们需要从头扫描dp，当遇到第一个大于等于m的数字时，我们需要利用m替换掉该数字。如此以来，虽然数组中所存储的不一定是最长<br>上升子序列，<strong>但数组中所含元素的个数一定是最长上升子序列</strong>。而从头扫描dp个过程可用二分查找实现，因此时间复杂度可以降低到O(nlogn)。</p>
+<p>　　　　优化：尽管使用了动态规划，但此题的时间复杂度仍然有O(n2)，时间复杂度偏高。我们可以采用动态规划+二分查找的方式进行优化。<br>　　　　我们利用一个数组dp[i]存储到第i个数字的最长上升子序列，因此，循环过程中，每到来一个数字m，如果该数字大于数组末尾数字，则可直接添加在<br>数组的末尾，否则的话，我们需要从头扫描dp，当遇到第一个大于等于m的数字时，我们需要利用m替换掉该数字。如此以来，虽然数组中所存储的不一定是最长<br>上升子序列，<strong>但数组中所含元素的个数一定是最长上升子序列</strong>。而从头扫描dp个过程可用二分查找实现，因此时间复杂度可以降低到O(nlogn)。<br>　　　　其实这种思路的本质是把最终所求值用数组的长度来表示了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// dp+二分查找</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">  	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">  	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</span><br><span class="line">  		<span class="keyword">int</span> i = Arrays.binarySearch(dp, <span class="number">0</span>, len, num);</span><br><span class="line">  		<span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		i = -i-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">  		dp[i] = num;</span><br><span class="line">  		<span class="keyword">if</span> (i == len) &#123;</span><br><span class="line">		len++;</span><br><span class="line">	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> len;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　8.最小路径和<br>　　　　给定一个包含非负整数的 m x n 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。<br>　　　　说明：每次只能向下或者向右移动一步。</p>
+<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求以第n个数为结尾的最长上升子序列的长度，子问题为求以第1、2、…、n-1个数为结尾的最长上升子序列的长度。<br>　　　　确定状态：第i个状态即为以第i个数为结尾的最长上升子序列的长度。<br>　　　　边界状态：i=0时，dp[i]=1<br>　　　　状态转移方程：dp[i] = max(dp[0]+1(num[i]&gt;num[0]),dp[1]+1(num[i]&gt;num[1])…dp[i-1]+1(num[i-1]&gt;num[i-1]))<br>　　　　注意：<strong>此题与最大字段和类似，dp[i]并不表示最终的结果。很多动态规划题都是如此</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	dp[i] = <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> result = dp[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; i;j++) &#123;</span><br><span class="line">       		<span class="keyword">if</span> (nums[i] &gt; nums[j] &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">       	<span class="keyword">if</span> (result &lt; dp[i]) &#123;</span><br><span class="line">			result = dp[i];</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1773,175 +1931,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Offer24/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/Offer24/" itemprop="url">Offer24（反转链表）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T10:56:54+08:00">
-                2019-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
-                    <span itemprop="name">剑指offer</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/剑指offer/链表/" itemprop="url" rel="index">
-                    <span itemprop="name">链表</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　输入一个链表，反转链表后，输出新链表的表头。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　若只定义一个指针进行反转，则会造成链表断开。因此考虑使用多指针暂存后续节点，以防链表断开。同时此题也可以使用递归，利用递归从尾到头反转链表，<br>代码简洁，但是思路有点绕，需注意。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">ReverseList1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line">   	ListNode node = ReverseList1(head.next);</span><br><span class="line">   	head.next.next = head;</span><br><span class="line">   	head.next = <span class="keyword">null</span>;</span><br><span class="line">   	<span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line">   <span class="comment">// 双指针</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">ReverseList2</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line">   	ListNode preNode = <span class="keyword">null</span>;</span><br><span class="line">   	ListNode curNode = head;</span><br><span class="line">   	<span class="keyword">while</span>(curNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">   		ListNode temp = curNode.next;</span><br><span class="line">   		curNode.next = preNode;</span><br><span class="line">   		preNode = curNode;</span><br><span class="line">   		curNode = temp;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> preNode;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
-<h3 id="双指针："><a href="#双指针：" class="headerlink" title="双指针："></a>双指针：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1994,7 +1983,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2016,7 +2005,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
