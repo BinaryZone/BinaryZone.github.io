@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="BinaryZone">
 <meta property="og:description" content="Continue rising.">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BinaryZone">
 <meta name="twitter:description" content="Continue rising.">
@@ -104,7 +104,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -136,7 +136,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
+            首页
           </a>
         </li>
       
@@ -195,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -225,7 +225,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            About Me
+            关于
           </a>
         </li>
       
@@ -248,6 +248,176 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/Offer05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/Offer05/" itemprop="url">Offer05（替换空格）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-16T10:14:34+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/剑指offer/字符串/" itemprop="url" rel="index">
+                    <span itemprop="name">字符串</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　最开始想到的思路是从头到尾遍历字符串，遇到字符串即替换，并插入%20，但字符串插入需要将后面的所有字符后移，算法复杂度较高。为优化时间复杂度，可以先统计出<br>替换空格后的字符串长度，然后从后到前插入。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从前往后</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">replaceSpace1</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">   	<span class="keyword">while</span>(i &lt; str.length()) &#123;</span><br><span class="line">   		<span class="keyword">if</span> (str.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">			str.replace(i, i+<span class="number">1</span>, <span class="string">"%"</span>);</span><br><span class="line">			str.insert(i+<span class="number">1</span>, <span class="string">"20"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">   		i++;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> str.toString();</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">// 从后往前</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">replaceSpace2</span><span class="params">(StringBuffer str)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; str.length();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> newLength = count*<span class="number">2</span> + str.length();</span><br><span class="line">	<span class="keyword">int</span> p1 = str.length() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> p2 = newLength - <span class="number">1</span>;</span><br><span class="line">	str.setLength(newLength);</span><br><span class="line">	<span class="keyword">while</span>(p1 &gt;=<span class="number">0</span> &amp;&amp; p2 &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str.charAt(p1) == <span class="string">' '</span>) &#123;</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'0'</span>);</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'2'</span>);</span><br><span class="line">			str.setCharAt(p2--, <span class="string">'%'</span>);</span><br><span class="line">			p1--;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			str.setCharAt(p2, str.charAt(p1));</span><br><span class="line">			p1--;</span><br><span class="line">			p2--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> str.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><h3 id="从前往后："><a href="#从前往后：" class="headerlink" title="从前往后："></a>从前往后：</h3><p>　　时间复杂度：<br>　　　　O(n**2)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+<h3 id="从后往前："><a href="#从后往前：" class="headerlink" title="从后往前："></a>从后往前：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>　　在合并数组或者字符串时，如果从前往后需要重复移动后面数字，可以考虑从后往前进行合并。这样能减少数字移动的次数，大大增加效率。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -291,9 +461,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T09:39:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-16T09:39:59+08:00">
                 2019-07-16
               </time>
             
@@ -312,7 +482,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -323,7 +493,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -334,7 +504,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -459,9 +629,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T19:20:27+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T19:20:27+08:00">
                 2019-07-15
               </time>
             
@@ -480,7 +650,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -491,7 +661,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -502,7 +672,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -631,9 +801,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T12:41:37+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T12:41:37+08:00">
                 2019-07-15
               </time>
             
@@ -652,7 +822,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -663,7 +833,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -674,7 +844,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -799,9 +969,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T12:35:09+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T12:35:09+08:00">
                 2019-07-15
               </time>
             
@@ -820,7 +990,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -831,7 +1001,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -842,7 +1012,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -967,9 +1137,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T10:37:09+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T10:37:09+08:00">
                 2019-07-15
               </time>
             
@@ -988,7 +1158,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -999,7 +1169,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1010,7 +1180,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1135,9 +1305,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T10:31:09+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T10:31:09+08:00">
                 2019-07-15
               </time>
             
@@ -1156,7 +1326,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1167,7 +1337,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1178,7 +1348,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1303,9 +1473,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T10:25:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T10:25:36+08:00">
                 2019-07-15
               </time>
             
@@ -1324,7 +1494,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1335,7 +1505,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1346,7 +1516,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1471,9 +1641,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T14:32:31+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T14:32:31+08:00">
                 2019-07-13
               </time>
             
@@ -1492,7 +1662,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1503,7 +1673,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1514,7 +1684,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1564,11 +1734,11 @@
 
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h1 id="什么是JDK动态代理模式？"><a href="#什么是JDK动态代理模式？" class="headerlink" title="什么是JDK动态代理模式？"></a>什么是JDK动态代理模式？</h1><p>　　相比于静态代理，JDK动态代理解决了静态代理模式频繁编写代理功能的缺点。</p>
 <h1 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　其不需要自己实现代理类，但由于使用了反射机制，效率不高，且真实对象需要实现接口。</p>
-<h1 id="实现：-1"><a href="#实现：-1" class="headerlink" title="实现："></a>实现：</h1><p>　　实现时需要用到java.lang.reflect.Proxy和java.lang.reflect.InvocationHandler，前者用来动态生成代理类和对象，后者是处理器接口，<br>用来实现具体的逻辑，可以通过invoke方法实现对真实角色的代理访问。<br>　　具体实现原理为：Proxy类通过newProxyInstance动态生成了一个代理类，当执行代理方法时，代理类直接调用了InvocationHandler处理器（相当于静态代理）<br>对象的invoke方法，并把通过反射产生的相应方法当做参数传入，InvocationHandler加入逻辑后通过反射调用真实对象的方法：method.invoke(readSubject, args);</p>
+<h1 id="实现：-1"><a href="#实现：-1" class="headerlink" title="实现："></a>实现：</h1><p>　　实现时需要用到java.lang.reflect.Proxy和java.lang.reflect.InvocationHandler，前者用来动态生成代理类和对象，后者是处理器接口,用来实现具体的逻辑，可以通过invoke方法实现对真实角色的代理访问。<br>　　具体实现原理为：Proxy类通过newProxyInstance动态生成了一个代理类，当执行代理方法时，代理类直接调用了InvocationHandler处理器（相当于静态代理）<br>对象的invoke方法，并把通过反射产生的相应方法当做参数传入，InvocationHandler加入逻辑后通过反射调用真实对象的方法：method.invoke(readSubject, args);</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 功能接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sellBooks</span><span class="params">()</span> </span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 真实类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sellBooks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"买书"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">speak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"说话"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"张三"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 处理器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line">	Subject readSubject;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(Subject readSubject)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.readSubject = readSubject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (method.getName().equals(<span class="string">"sellBooks"</span>)) &#123;</span><br><span class="line">			<span class="keyword">int</span> invoke = (<span class="keyword">int</span>) method.invoke(readSubject, args);</span><br><span class="line">			System.out.println(<span class="string">"调用买书方法"</span>);</span><br><span class="line">			<span class="keyword">return</span> invoke;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			String string = (String) method.invoke(readSubject, args);</span><br><span class="line">			System.out.println(<span class="string">"调用说话方法"</span>);</span><br><span class="line">			<span class="keyword">return</span> string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Subject realSubject = <span class="keyword">new</span> RealSubject();</span><br><span class="line">		MyInvocationHandler myInvocationHandler = <span class="keyword">new</span> MyInvocationHandler(realSubject);</span><br><span class="line">		Subject proxyClass = (Subject) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), <span class="keyword">new</span> Class[] &#123;Subject.class&#125;, myInvocationHandler);</span><br><span class="line">		proxyClass.sellBooks();</span><br><span class="line">		proxyClass.speak();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h1><p>　　spring中的aop</p>
-<h1 id="什么是cglib动态代理？"><a href="#什么是cglib动态代理？" class="headerlink" title="什么是cglib动态代理？"></a>什么是cglib动态代理？</h1><pre><code>cglib动态代理通过继承要被动代理的类，重写父类的方法，在子类方法中加入业务逻辑代码，从而实现代理。</code></pre><p>　　首先要明白cglib是什么。它是一个强大的代码生成类库，它可以在运行期扩展Java类与实现Java接口。其底层依赖asm库实现。asm库<br>是一个字节码处理类库，它可以转换字节码并生成新的类。</p>
+<h1 id="什么是cglib动态代理？"><a href="#什么是cglib动态代理？" class="headerlink" title="什么是cglib动态代理？"></a>什么是cglib动态代理？</h1><pre><code>cglib动态代理通过继承要被动代理的类，重写父类的方法，在子类方法中加入业务逻辑代码，从而实现代理。</code></pre><p>　　首先要明白cglib是什么。它是一个强大的代码生成类库，它可以在运行期扩展Java类与实现Java接口。其底层依赖asm库实现。asm库是一个字节码处理类库，它可以转换字节码并生成新的类。</p>
 <h1 id="优缺点：-1"><a href="#优缺点：-1" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　JDK动态代理要求被代理对象实现了接口，而cglib动态代理则不需要被代理对象实现接口，并且由于JDK动态代理使用了反射机制，cglib运行效率会更高。</p>
 <h1 id="实现：-2"><a href="#实现：-2" class="headerlink" title="实现："></a>实现：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 被代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 可以被代理</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师吃饭"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 不会被子类覆盖</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师正在工作"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 不会被子类覆盖</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"工程师在玩游戏"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CglibProxy</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object target;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CglibProxy</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.target = target;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object arg0, Method arg1, Object[] arg2, MethodProxy arg3)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"前置通知"</span>);</span><br><span class="line">		Object result = arg1.invoke(target);</span><br><span class="line">		System.out.println(<span class="string">"后置通知"</span>);</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getProxy</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">		enhancer.setSuperclass(target.getClass());</span><br><span class="line">		enhancer.setCallback(<span class="keyword">new</span> CglibProxy(target));</span><br><span class="line">		<span class="keyword">return</span> enhancer.create();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Engineer engineerProxy = (Engineer) CglibProxy.getProxy(<span class="keyword">new</span> Engineer());</span><br><span class="line">		engineerProxy.eat();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1652,9 +1822,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T14:17:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T14:17:45+08:00">
                 2019-07-13
               </time>
             
@@ -1673,7 +1843,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1684,7 +1854,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1695,7 +1865,7 @@
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1743,174 +1913,6 @@
 <h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="循环："><a href="#循环：" class="headerlink" title="循环："></a>循环：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="keyword">char</span>[] s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> r = s.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">       	s[l] ^= s[r];</span><br><span class="line">       	s[r] ^= s[l];</span><br><span class="line">       	s[l++] ^= s[r--];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="循环：-1"><a href="#循环：-1" class="headerlink" title="循环："></a>循环：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/LeetCode236/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/12/LeetCode236/" itemprop="url">LeetCode236（二叉树的最近公共祖先）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-12T14:15:35+08:00">
-                2019-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/二叉树/" itemprop="url" rel="index">
-                    <span itemprop="name">二叉树</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　此题最开始无法想出思路。结合官方解答后做出。同时递归法难想到，比较巧妙，难理解。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h3 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode236</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TreeNode LCA;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        recurseTree(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> LCA;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">recurseTree</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="keyword">int</span> left = recurseTree(root.left, p, q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> right = recurseTree(root.right, p, q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> mid = (root == p || root == q)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">if</span> (left + right + mid &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.LCA = root;</span><br><span class="line">		&#125;</span><br><span class="line">    	<span class="keyword">return</span> (left + right + mid) &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析及总结："><a href="#复杂度分析及总结：" class="headerlink" title="复杂度分析及总结："></a>复杂度分析及总结：</h1><h3 id="递归：-1"><a href="#递归：-1" class="headerlink" title="递归："></a>递归：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(n)。</p>
 
           
         
@@ -1998,8 +2000,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -2009,8 +2011,8 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">categories</span>
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
@@ -2021,7 +2023,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">22</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             
@@ -2067,7 +2069,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -2075,7 +2077,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -2122,8 +2124,6 @@
   
 
 
-  
-
 
 
 
@@ -2162,11 +2162,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
