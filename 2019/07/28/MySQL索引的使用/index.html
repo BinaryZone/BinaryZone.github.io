@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,10 +56,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/fruit_lime_16px.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/fruit_lime_16px.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -87,12 +87,10 @@
 <meta property="og:site_name" content="BinaryZone">
 <meta property="og:description" content="什么是索引？　　官方定义为：索引是帮助MySQL高效获取数据的数据结构。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种排好序的快速查找数据结构。 　　在数据之外，数据库系统还维护着满足特点查找算法的数据结构，这些数据结构以某种方式引用（指向）数据。　　这种数据结构一般为B+树。 优缺点：　　提高数据的检索效率，降低数据的排序成本　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.xmind">
-<meta property="og:updated_time" content="2019-07-28T12:50:52.660Z">
+<meta property="og:updated_time" content="2019-07-28T14:56:31.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL索引的使用">
 <meta name="twitter:description" content="什么是索引？　　官方定义为：索引是帮助MySQL高效获取数据的数据结构。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种排好序的快速查找数据结构。 　　在数据之外，数据库系统还维护着满足特点查找算法的数据结构，这些数据结构以某种方式引用（指向）数据。　　这种数据结构一般为B+树。 优缺点：　　提高数据的检索效率，降低数据的排序成本　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需">
-<meta name="twitter:image" content="http://yoursite.com/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.xmind">
 
 
 
@@ -100,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -228,7 +226,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            关于我
           </a>
         </li>
       
@@ -381,8 +379,7 @@
 <h1 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　提高数据的检索效率，降低数据的排序成本<br>　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需要花时间研究建立最优秀的索引。</p>
 <h1 id="索引分类："><a href="#索引分类：" class="headerlink" title="索引分类："></a>索引分类：</h1><p>　　单值索引<br>　　唯一索引<br>　　符合索引</p>
 <h1 id="索引结构："><a href="#索引结构：" class="headerlink" title="索引结构："></a>索引结构：</h1><p>　　B+树<br>　　哈希<br>　　全文索引<br>　　R树</p>
-<h1 id="什么情况下需要建索引？"><a href="#什么情况下需要建索引？" class="headerlink" title="什么情况下需要建索引？"></a>什么情况下需要建索引？</h1><h1 id="什么情况下不需要建索引？"><a href="#什么情况下不需要建索引？" class="headerlink" title="什么情况下不需要建索引？"></a>什么情况下不需要建索引？</h1><p><img src="/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.xmind" alt> </p>
-
+<h1 id="什么情况下需要建索引？"><a href="#什么情况下需要建索引？" class="headerlink" title="什么情况下需要建索引？"></a>什么情况下需要建索引？</h1><h1 id="什么情况下不需要建索引？"><a href="#什么情况下不需要建索引？" class="headerlink" title="什么情况下不需要建索引？"></a>什么情况下不需要建索引？</h1>
       
     </div>
     
@@ -423,6 +420,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/31/递归、回溯和分治/" rel="prev" title="递归、回溯和分治">
+                递归、回溯和分治 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -501,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -523,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -533,6 +534,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/binaryzone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:497044986@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -594,7 +611,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -693,6 +710,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
