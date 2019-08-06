@@ -262,6 +262,366 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/红黑树详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/05/红黑树详解/" itemprop="url">红黑树详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T10:17:31+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/算法杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">算法杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、预备知识"><a href="#一、预备知识" class="headerlink" title="一、预备知识"></a>一、预备知识</h1><p>　　了解红黑树之前，我们需要明白何为二叉查找树，何为平衡二叉查找树，何为左旋、右旋和双旋。<br>下面给出左旋、右旋和双旋转的简单示意图：<br>左旋：<br>　　当平衡二叉树中插入节点后，右子树的高度与左子树的高度之差大于2，则需进行左旋。<br>图示：<br><img src="/images/%E5%B7%A6%E6%97%8B.png" alt>　　<br>右旋：<br>　　当平衡二叉树中插入节点后，左子树的高度与右子树的高度之差大于2，则需进行右旋。<br>图示：<br><img src="/images/%E5%8F%B3%E6%97%8B.png" alt><br>双旋转：<br>　　拿左旋情况来说，如果当前根结点的右子树的左子树的高度大于右子树，则在需要先对根结点的右子树进行右旋转，再整体左旋。<br><img src="/images/%E5%8F%8C%E6%97%8B.png" alt><br>代码实现：<br><a href="https://github.com/BinaryZone/Common-algorithm/blob/master/src/com/wh/datastructure/avl/AVLTree.java" target="_blank" rel="noopener">GitHub</a></p>
+<h1 id="二、红黑树"><a href="#二、红黑树" class="headerlink" title="二、红黑树"></a>二、红黑树</h1><p>1.概念<br>红黑树同样是平衡二叉查找树，只是其实现平衡的算法不同，且不满足绝对平衡。其插入删除涉及到旋转的操作更少。<br>红黑树在结点中增加了一个存储位用来存储颜色，可以是RED或者BLACK，通过<strong>颜色及性质的约束</strong>，其可以保证它的最长路径不超过最短路径的二倍。</p>
+<p>2.性质</p>
+<ul>
+<li>每个节点颜色不是黑色就是红色</li>
+<li>根结点是黑色的</li>
+<li>如果一个结点是红色，那么它的子节点必定是黑色。（也就是没有连续的红结点）</li>
+<li>每个叶子结点都是黑色</li>
+<li>任意结点到每个叶子结点的路径都包含数量相同的黑节点。</li>
+</ul>
+<p>3.插入操作<br>插入操作首先需要定位插入的位置，然后通过旋转、染色的操作实现自平衡。查找插入的位置并不难。<br>找到插入的位置后，我们需要明白插入的结点必定为红色（如果为黑色，黑色平衡被打破，很难处理）。<br>插入操作分为很多种情况，但整体上可分为三种：不需要处理、</p>
+<p>不需要处理的情况：</p>
+<ul>
+<li>红黑树为空树：直接把插入节点设为根结点，并且将其颜色染为黑色。</li>
+<li>插入结点的父节点为黑结点：直接插入</li>
+<li>插入结点已存在：把插入结点的颜色设为当前结点的颜色，更新当前结点的值为插入结点的值。</li>
+</ul>
+<p>插入结点的父结点为红结点：<br>首先我们要明白如果父结点为红结点，那么该父结点肯定不是根结点，也就是说待插入结点肯定存在祖父结点，且祖父结点肯定为黑色。<br>根据待插入结点的叔叔结点的不同情况，可分为如下几种情况：<br>1）叔叔结点存在且为红色<br>这种情形的处理办法为：将祖父结点PP染红，父结点和叔叔染黑，使其变为红黑黑的结构。如下图所示：<br><img src="/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E6%83%85%E5%BD%A21.png" alt><br><img src="/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E6%83%85%E5%BD%A21%EF%BC%881%EF%BC%89.png" alt><br>进行此操作后，如果祖父结点的父结点为黑色，则不需再进行进一步操作。如果祖父结点的父结点为红色，则还需把祖父结点当做新插入的结点左自平衡处理，直到平衡为止。<br>也就是说红黑树的生长是<strong>自底向上</strong>的。<br>如果祖父结点刚好为根结点，则需要把祖父结点染黑。这是唯一会增加红黑树黑色结点层数的情况。</p>
+<p>2）叔叔结点不存在或为黑结点，父结点是祖父结点的左子结点</p>
+<ul>
+<li>插入结点是其父结点的左子结点：进行右旋<br>具体步骤为：将P染为黑色，PP染为红色，右旋。<br><img src="/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E6%83%85%E5%BD%A22%EF%BC%881%EF%BC%89.png" alt></li>
+<li>插入结点是其父结点的右子结点：对P左旋使其转换为上一情形<br><img src="/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E6%83%85%E5%BD%A22%EF%BC%882%EF%BC%89.png" alt></li>
+</ul>
+<p>3）叔叔结点不存在或为黑结点，父结点是祖父结点的右子结点。<br>此情况与情况2）相反。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/tanrui519521/article/details/80980135" target="_blank" rel="noopener">https://blog.csdn.net/tanrui519521/article/details/80980135</a><br><a href="https://blog.csdn.net/qq_37934101/article/details/81160254" target="_blank" rel="noopener">https://blog.csdn.net/qq_37934101/article/details/81160254</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/Java容器总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wei Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BinaryZone">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/04/Java容器总结/" itemprop="url">Java容器总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-04T14:52:43+08:00">
+                2019-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">后端技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端技术/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>Java中的容器包括Collection和Map两种，Collection存储着对象的集合，Map存储键值对。<br><strong>Collection</strong><br><img src="/images/Java%E5%AE%B9%E5%99%A8.png" alt><br>1.Set</p>
+<ul>
+<li>TreeSet：底层使用红黑树实现，它可以确保集合元素处于排序状态。但其查找效率不如HashMap。</li>
+<li>HashSet：底层使用哈希表实现，具有良好的存取和查找性能。大多数情况下我们会使用HashSet。它具有元素无序、不重复、线程不安全的特点。</li>
+<li>LinkedHashSet：LinkedHashSet为HashSet的子类，其内部利用链表维护元素的插入顺序。</li>
+</ul>
+<p>2.List</p>
+<ul>
+<li>ArrayList：底层使用动态数组实现，有序、可以重复、线程不安全，查找效率高。</li>
+<li>Vector：与ArrayList类似，但线程安全</li>
+<li>LinkedList：底层基于双向链表实现，增删效率高，此外，它还常用作栈、队列和双向队列的实现类。</li>
+</ul>
+<p>3.Queue</p>
+<ul>
+<li>LinkedList：实现了Deque双向队列接口，是一个双向队列。</li>
+<li>Priority：底层使用数组实现，常用来实现堆这种数据结构。</li>
+</ul>
+<p>4.集合常见的遍历方式：</p>
+<ul>
+<li>调用集合的forEach方法遍历</li>
+<li>使用Iterator接口</li>
+<li>使用foreach循环遍历</li>
+</ul>
+<p><strong>Map</strong><br><img src="/images/Java%E5%AE%B9%E5%99%A81.png" alt></p>
+<ul>
+<li>HashMap：基于哈希表实现，线程不安全。</li>
+<li>TreeMap：基于红黑树实现。</li>
+<li>HashTable：与HashMap类似，但线程安全。现在已不建议使用，而建议使用concurrent包中的线程安全类。</li>
+<li>LinkedHashMap：是HashMap的子类，内部使用了双向链表维护插入顺序。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%AE%B9%E5%99%A8.md" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%AE%B9%E5%99%A8.md</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/递归、回溯和分治/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1231,17 +1591,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端技术/Java基础/高并发/" itemprop="url" rel="index">
-                    <span itemprop="name">高并发</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -1467,15 +1816,21 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 存储定点集合</span></span><br><span class="line">	<span class="keyword">private</span> ArrayList&lt;String&gt; vertexList;</span><br><span class="line">	<span class="comment">// 存储图对应的邻接矩阵</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] edges;</span><br><span class="line">	<span class="comment">// 表示边的数目</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> numOfEdges;</span><br><span class="line">	<span class="comment">// 标记结点是否被访问过</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span>[] isVisited;</span><br><span class="line">	<span class="comment">// 构造器</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		vertexList = <span class="keyword">new</span> ArrayList&lt;&gt;(n);</span><br><span class="line">		edges = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		numOfEdges = <span class="number">0</span>;</span><br><span class="line">		isVisited = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 插入节点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertVertex</span><span class="params">(String vertex)</span> </span>&#123;</span><br><span class="line">		vertexList.add(vertex);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 添加边</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertEdge</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2,<span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">		edges[v1][v2] = weight;</span><br><span class="line">		edges[v1][v2] = weight;</span><br><span class="line">		numOfEdges++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 得到第一个邻接结点的下标w</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirstNeighbor</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; vertexList.size();j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (edges[index][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 根据前一个邻接结点的下标来获取下一个邻接结点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNextNeighbor</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = v2+<span class="number">1</span>;j &lt; vertexList.size();j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (edges[v1][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="深度优先搜索（DFS）："><a href="#深度优先搜索（DFS）：" class="headerlink" title="深度优先搜索（DFS）："></a>深度优先搜索（DFS）：</h1><p>　　深度优先遍历，从初始访问结点出发，初始访问结点可能有多个邻接结点，深度优先遍历的策略就是首先访问第一个邻接结点，然后再以这个被访问的邻接<br>结点作为初始结点，访问它的第一个邻接结点。可以理解为：每次都在访问完当前结点后首先访问当前结点的第一个结点。<br>　　很明显，深度优先遍历是一个<strong>递归</strong>的过程。</p>
-<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h4><p>　　1.访问初始结点v，并标记结点v为已访问<br>　　2.查找v的第一个邻接结点w<br>　　3.若w存在，则继续执行4，如果w不存在，则回到第一步，将从v的下一个节点继续。<br>　　4.若w未被访问，对w进行深度优先遍历递归<br>　　5.查找节点v的w邻接结点的下一个邻接结点，转到步骤3.</p>
-<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">boolean</span>[] isVisited,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 首先输出初始结点</span></span><br><span class="line">	System.out.print(vertexList.get(i) + <span class="string">" "</span>);</span><br><span class="line">	<span class="comment">// 将结点设置为已访问</span></span><br><span class="line">	isVisited[i] = <span class="keyword">true</span>;</span><br><span class="line">	<span class="comment">// 查找结点i的第一个邻接结点</span></span><br><span class="line">	<span class="keyword">int</span> w = getFirstNeighbor(i);</span><br><span class="line">	<span class="keyword">while</span>(w != -<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[w]) &#123;</span><br><span class="line">			dfs(isVisited, w);</span><br><span class="line">		&#125;</span><br><span class="line">		w = getNextNeighbor(i, w);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对dfs进行一个重载，遍历我们所有的结点，并进行dfs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 遍历所有的结点，进行dfs(回溯)</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; vertexList.size();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[i]) &#123;</span><br><span class="line">			dfs(isVisited,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h2><p>　　1.访问初始结点v，并标记结点v为已访问<br>　　2.查找v的第一个邻接结点w<br>　　3.若w存在，则继续执行4，如果w不存在，则回到第一步，将从v的下一个节点继续。<br>　　4.若w未被访问，对w进行深度优先遍历递归<br>　　5.查找节点v的w邻接结点的下一个邻接结点，转到步骤3.</p>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">boolean</span>[] isVisited,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 首先输出初始结点</span></span><br><span class="line">	System.out.print(vertexList.get(i) + <span class="string">" "</span>);</span><br><span class="line">	<span class="comment">// 将结点设置为已访问</span></span><br><span class="line">	isVisited[i] = <span class="keyword">true</span>;</span><br><span class="line">	<span class="comment">// 查找结点i的第一个邻接结点</span></span><br><span class="line">	<span class="keyword">int</span> w = getFirstNeighbor(i);</span><br><span class="line">	<span class="keyword">while</span>(w != -<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[w]) &#123;</span><br><span class="line">			dfs(isVisited, w);</span><br><span class="line">		&#125;</span><br><span class="line">		w = getNextNeighbor(i, w);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对dfs进行一个重载，遍历我们所有的结点，并进行dfs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 遍历所有的结点，进行dfs(回溯)</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; vertexList.size();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[i]) &#123;</span><br><span class="line">			dfs(isVisited,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="广度优先搜索（BFS）"><a href="#广度优先搜索（BFS）" class="headerlink" title="广度优先搜索（BFS）"></a>广度优先搜索（BFS）</h1><p>　　图的广度优先搜索类似于树的层序遍历，即访问初始结点后，再依次访问初始结点的邻接结点，当前结点的所有邻接结点访问完成之后，再访问第一个邻接<br>结点的所有结点，以此类推。</p>
-<h4 id="算法算法步骤"><a href="#算法算法步骤" class="headerlink" title="算法算法步骤"></a>算法算法步骤</h4><p>　　1.访问初始结点v并标记为已访问<br>　　2.结点v入队列<br>　　3.当队列非空时，继续执行，否则算法结束。。。。。</p>
-<h4 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">boolean</span>[] isVisited,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u; <span class="comment">// 表示队列头结点</span></span><br><span class="line">	<span class="keyword">int</span> w; <span class="comment">// 表示邻接结点</span></span><br><span class="line">	Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">	System.out.println(vertexList.get(i));</span><br><span class="line">	isVisited[i] = <span class="keyword">true</span>;</span><br><span class="line">	queue.add(i);</span><br><span class="line">	<span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">		u = queue.poll();</span><br><span class="line">		w = getFirstNeighbor(u);</span><br><span class="line">		<span class="keyword">while</span>(w != -<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!isVisited[w]) &#123;</span><br><span class="line">				System.out.println(vertexList.get(w));</span><br><span class="line">				isVisited[w] = <span class="keyword">true</span>;</span><br><span class="line">				queue.add(w);</span><br><span class="line">			&#125;</span><br><span class="line">			w = getNextNeighbor(u, w);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; vertexList.size();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[i]) &#123;</span><br><span class="line">			bfs(isVisited, i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="算法算法步骤"><a href="#算法算法步骤" class="headerlink" title="算法算法步骤"></a>算法算法步骤</h2><p>　　1.访问初始结点v并标记为已访问<br>　　2.结点v入队列<br>　　3.当队列非空时，继续执行，否则算法结束。。。。。</p>
+<h2 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">boolean</span>[] isVisited,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u; <span class="comment">// 表示队列头结点</span></span><br><span class="line">	<span class="keyword">int</span> w; <span class="comment">// 表示邻接结点</span></span><br><span class="line">	Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">	System.out.println(vertexList.get(i));</span><br><span class="line">	isVisited[i] = <span class="keyword">true</span>;</span><br><span class="line">	queue.add(i);</span><br><span class="line">	<span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">		u = queue.poll();</span><br><span class="line">		w = getFirstNeighbor(u);</span><br><span class="line">		<span class="keyword">while</span>(w != -<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!isVisited[w]) &#123;</span><br><span class="line">				System.out.println(vertexList.get(w));</span><br><span class="line">				isVisited[w] = <span class="keyword">true</span>;</span><br><span class="line">				queue.add(w);</span><br><span class="line">			&#125;</span><br><span class="line">			w = getNextNeighbor(u, w);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; vertexList.size();i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!isVisited[i]) &#123;</span><br><span class="line">			bfs(isVisited, i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="普里姆算法（Prim）"><a href="#普里姆算法（Prim）" class="headerlink" title="普里姆算法（Prim）"></a>普里姆算法（Prim）</h1><p>　　普里姆算法用来求图的最小生成树。该算法的核心思想为贪心。</p>
-<h4 id="代码实现：-2"><a href="#代码实现：-2" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Prim &#123;</span><br><span class="line">	public void prim(Graph graph,int v) &#123;</span><br><span class="line">		int[] isVisited = new int[graph.getSize()];</span><br><span class="line">		isVisited[v] = 1;</span><br><span class="line">		// </span><br><span class="line">		int h1 = -1;</span><br><span class="line">		int h2 = -1;</span><br><span class="line">		int minWeight = 10000;</span><br><span class="line">		for(int k = 1;k &lt; graph.getSize();k++) &#123;</span><br><span class="line">			for(int i = 0;i &lt; graph.getSize();i++) &#123;</span><br><span class="line">				for(int j = 0;j &lt; graph.getSize();j++) &#123;</span><br><span class="line">					if (isVisited[i] == 1 &amp;&amp; isVisited[j] == 0 &amp;&amp; graph.getWeight(i, j) &lt; minWeight) &#123;</span><br><span class="line">						minWeight = graph.getWeight(i, j);</span><br><span class="line">						h1 = i;</span><br><span class="line">						h2 = j;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(&quot;边&lt;&quot;+graph.getByIndex(h1)+&quot;,&quot;+graph.getByIndex(h2)+&quot;&gt;权值：&quot;+minWeight);</span><br><span class="line">			isVisited[h2] = 1;</span><br><span class="line">			minWeight = 10000;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="普里姆算法（Prim）"><a href="#普里姆算法（Prim）" class="headerlink" title="普里姆算法（Prim）"></a>普里姆算法（Prim）</h1><p>　　普里姆算法用来求图的最小生成树。该算法的核心思想为贪心。<br>　　该算法首先从某一起始结点出发，遍历邻接结点，找出最小的边，并把该结点标记为已访问；然后再以这两个结点为起始结点，分别遍历它们的邻接结点，找出最小的边，<br>并把该结点标记为已访问，以此类推。</p>
+<h2 id="代码实现：-2"><a href="#代码实现：-2" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Prim &#123;</span><br><span class="line">	public void prim(Graph graph,int v) &#123;</span><br><span class="line">		int[] isVisited = new int[graph.getSize()];</span><br><span class="line">		isVisited[v] = 1;</span><br><span class="line">		// </span><br><span class="line">		int h1 = -1;</span><br><span class="line">		int h2 = -1;</span><br><span class="line">		int minWeight = 10000;</span><br><span class="line">		for(int k = 1;k &lt; graph.getSize();k++) &#123;</span><br><span class="line">			for(int i = 0;i &lt; graph.getSize();i++) &#123;</span><br><span class="line">				for(int j = 0;j &lt; graph.getSize();j++) &#123;</span><br><span class="line">					if (isVisited[i] == 1 &amp;&amp; isVisited[j] == 0 &amp;&amp; graph.getWeight(i, j) &lt; minWeight) &#123;</span><br><span class="line">						minWeight = graph.getWeight(i, j);</span><br><span class="line">						h1 = i;</span><br><span class="line">						h2 = j;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(&quot;边&lt;&quot;+graph.getByIndex(h1)+&quot;,&quot;+graph.getByIndex(h2)+&quot;&gt;权值：&quot;+minWeight);</span><br><span class="line">			isVisited[h2] = 1;</span><br><span class="line">			minWeight = 10000;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="克鲁斯卡尔（Kruskal）算法"><a href="#克鲁斯卡尔（Kruskal）算法" class="headerlink" title="克鲁斯卡尔（Kruskal）算法"></a>克鲁斯卡尔（Kruskal）算法</h1><p>　　该算法也是用来求最小生成树，该算法同样用到了贪心思想。<br>　　该算法的实现为：首先要对图的所有边权值进行排序，然后依次从小到大取边组成最小生成树，在取的同时还要进行判断是否构成回路的操作，如果构成了回路则要跳过该条边。<br>　　注意：判断是否构成回路的算法是理解难点。</p>
+<h2 id="代码实现：-3"><a href="#代码实现：-3" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Kruskal</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(Graph graph)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[graph.getSize()];</span><br><span class="line">		EData[] result = <span class="keyword">new</span> EData[graph.getSize()-<span class="number">1</span>];</span><br><span class="line">		</span><br><span class="line">		EData[] edges = graph.getEdges();</span><br><span class="line">		System.out.println(<span class="string">"图的边的集合"</span>+Arrays.toString(edges));</span><br><span class="line">		graph.sortEdges(edges);</span><br><span class="line">		System.out.println(<span class="string">"排序后边的集合："</span>+Arrays.toString(edges));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; graph.getNumOfedges();i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> p1 = graph.getPosition(edges[i].start);</span><br><span class="line">			<span class="keyword">int</span> p2 = graph.getPosition(edges[i].end);</span><br><span class="line">			<span class="keyword">int</span> m = graph.getEnd(ends, p1);</span><br><span class="line">			<span class="keyword">int</span> n = graph.getEnd(ends, p2);</span><br><span class="line">			System.out.println(<span class="string">"m:"</span>+m+<span class="string">" n:"</span> + n);</span><br><span class="line">			<span class="keyword">if</span> (m != n) &#123;</span><br><span class="line">				result[index++] = edges[i];</span><br><span class="line">				ends[m] = n;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Arrays.toString(ends));</span><br><span class="line">		System.out.println(<span class="string">"kruskal:"</span>+Arrays.toString(result));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="迪杰斯特拉（Dijkstra）算法："><a href="#迪杰斯特拉（Dijkstra）算法：" class="headerlink" title="迪杰斯特拉（Dijkstra）算法："></a>迪杰斯特拉（Dijkstra）算法：</h1><p>　　该算法用来求某一结点到其他结点的最短路径。<br>　　该算法用到了BFS的思想。它以起始点为中心，向外层层扩展。</p>
+
           
         
       
@@ -1678,367 +2033,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/动态规划专题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/21/动态规划专题/" itemprop="url">动态规划专题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-21T14:24:15+08:00">
-                2019-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/算法杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">算法杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="动态规划概述："><a href="#动态规划概述：" class="headerlink" title="动态规划概述："></a>动态规划概述：</h1><p>　　动态规划是运筹学的一个分支，是求解决策过程最优化的数学方法。它利用各阶段之间的关系，逐个求解，最终求得全局最优解。在设计动态规划算法时，<br>需要确认原问题与子问题、动态规划状态、边界状态值、状态转移方程等关键要素。<br>　　动态规划与分治算法类似，基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。但动态规划与分治<br>算法不同的是，适用于动态规划求解的问题，经分解得到的子问题往往不是互相独立的。（即下一阶段的求解是建立在上一个子阶段的解的基础之上的。）</p>
-<h1 id="动态规划题目常见类型："><a href="#动态规划题目常见类型：" class="headerlink" title="动态规划题目常见类型："></a>动态规划题目常见类型：</h1><pre><code>按问题特性分：
-　　1.计数型
-　　　　有多少种方式/方法...？
-　　2.求最值
-　　3.求存在性
-　　　　是否能？能不能？（true or false）
-按求解过程（状态方程）分：
-　　1.数组型
-　　2.背包型
-　　3.字符串型
-　　</code></pre><h1 id="求解思路与步骤："><a href="#求解思路与步骤：" class="headerlink" title="求解思路与步骤："></a>求解思路与步骤：</h1><p>　　1.分析题目是否是动态规划题目<br>　　2.确定原问题与子问题<br>　　3.确定状态<br>　　4.确定边界状态的值<br>　　5.找出状态转移方程<br>　　6.code<br>　　注意：在解题过程可以先枚举找出状态转移关系，同时注意应用“选与不选”的思路</p>
-<h1 id="例题分析："><a href="#例题分析：" class="headerlink" title="例题分析："></a>例题分析：</h1><h3 id="数组类型DP"><a href="#数组类型DP" class="headerlink" title="数组类型DP"></a>数组类型DP</h3><p>　　1.爬楼梯（LeetCode70）<br>　　　　分析：计数型问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求n阶台阶的走法，子问题为求1阶台阶、2阶台阶、…、n-1阶台阶的走法<br>　　　　确定状态：此题状态单一，第i个状态即为i阶台阶的所有走法数量。<br>　　　　边界状态：i=1时，dp[i]=1，i=2时，dp[i]=2；<br>　　　　状态转移方程：dp[i] = dp[i-1]+dp[i-2];</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	dp[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt; n;i++) &#123;</span><br><span class="line">		dp[i] = dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　2.打家劫舍<br>　　　　你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<br>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能<br>够偷窃到的最高金额。<br>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求到第n个房屋的最大收益，子问题为求第1个房屋的最大收益、第2个房屋的最大收益、…、第n-1个房屋的最大收益<br>　　　　确定状态：此题状态单一，第i个状态即为第i个房屋的最大收益.<br>　　　　边界状态：i=1时，dp[i]=nums[0]，i=2时，dp[i]=Math.max(nums[0], nums[1])；<br>　　　　状态转移方程：dp[i] = Math.max(dp[i-1], nums[i] + dp[i-2])(包含第i个房屋偷或者不偷两种选择);</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">2</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line">      <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">      dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">      dp[<span class="number">1</span>] = Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">      	dp[i] = Math.max(dp[i-<span class="number">1</span>], nums[i] + dp[i-<span class="number">2</span>]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dp[dp.length-<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　3.最大字段和<br>　　　　给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：<strong>原问题为求以第n个数字结尾的最大字段和，子问题为求以第1、2、…、n-1个数字结尾的最大字段和。注意dp[n]并不是前n个数字组成的数组的最大字段和，即不是最终答案</strong><br>　　　　确定状态：第i个状态即为以第i个数字结尾的最大字段和<br>　　　　边界状态：i=1时，dp[i]=nums[0]<br>　　　　状态转移方程：dp[i] = nums[i](dp[i-1] &lt;= 0) or num[i]+dp<a href="dp[i-1]>0">i-1</a>(包含第i个房屋偷或者不偷两种选择);</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</span><br><span class="line">		<span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			sum += num;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			sum = num;</span><br><span class="line">		&#125;</span><br><span class="line">		ans = Math.max(ans, sum);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　4.零钱兑换（LeetCode322）<br>　　　　给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能<br>组成总金额，返回 -1。</p>
-<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为总金额为n时，最少需要的硬币个数，子问题为总金额为1、2、…n-1时，最少需要的硬币个数<br>　　　　确定状态：第i个状态即为总金额为i时最少所需的硬币个数。<br>　　　　边界状态：i=0时，dp[i]=0<br>　　　　状态转移方程：dp[i] = min(dp[i-ooins[j]])+1;<br>　　　　注意：此题不能从数组着手，从数组着手无法确定状态转移方程。同时注意考虑有的金额无法凑出的情况，此时需要返回-1。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coinChange1</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[amount+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; amount+<span class="number">1</span>;i++) &#123;</span><br><span class="line">    	dp[i] = -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; amount+<span class="number">1</span>;i++) &#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; coins.length;j++) &#123;</span><br><span class="line">    		<span class="keyword">if</span> (i - coins[j] &gt;= <span class="number">0</span> &amp;&amp; dp[i-coins[j]] != -<span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> (dp[i] == -<span class="number">1</span> || dp[i] &gt; dp[i - coins[j]] + <span class="number">1</span>) &#123;</span><br><span class="line">		dp[i] = dp[i - coins[j]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　扩展：零钱兑换问题在特定的零钱组合（<strong>任意面额是比自己小的面额的倍数关系</strong>）下是可以使用贪心算法进行解题，但同样在很多零钱组合下使用贪心算法解此类题是错误的。</p>
-<p>　　5.三角形最小路径和（LeetCode120）<br>　　<br>　　6.最长上升子序列（LeetCode300）<br>　　　　给定一个无序的整数数组，找到其中最长上升子序列的长度。</p>
-<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求以第n个数为结尾的最长上升子序列的长度，子问题为求以第1、2、…、n-1个数为结尾的最长上升子序列的长度。<br>　　　　确定状态：第i个状态即为以第i个数为结尾的最长上升子序列的长度。<br>　　　　边界状态：i=0时，dp[i]=1<br>　　　　状态转移方程：dp[i] = max(dp[0]+1(num[i]&gt;num[0]),dp[1]+1(num[i]&gt;num[1])…dp[i-1]+1(num[i-1]&gt;num[i-1]))<br>　　　　注意：<strong>此题与最大字段和类似，dp[i]并不表示最终的结果。很多动态规划题都是如此</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	dp[i] = <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> result = dp[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; i;j++) &#123;</span><br><span class="line">       		<span class="keyword">if</span> (nums[i] &gt; nums[j] &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">       	<span class="keyword">if</span> (result &lt; dp[i]) &#123;</span><br><span class="line">			result = dp[i];</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　　　优化：尽管使用了动态规划，但此题的时间复杂度仍然有O(n2)，时间复杂度偏高。我们可以采用动态规划+二分查找的方式进行优化。<br>　　　　我们利用一个数组dp[i]存储到第i个数字的最长上升子序列，因此，循环过程中，每到来一个数字m，如果该数字大于数组末尾数字，则可直接添加在<br>数组的末尾，否则的话，我们需要从头扫描dp，当遇到第一个大于等于m的数字时，我们需要利用m替换掉该数字。如此以来，虽然数组中所存储的不一定是最长<br>上升子序列，<strong>但数组中所含元素的个数一定是最长上升子序列</strong>。而从头扫描dp个过程可用二分查找实现，因此时间复杂度可以降低到O(nlogn)。<br>　　　　其实这种思路的本质是把最终所求值用数组的长度来表示了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// dp+二分查找</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">  	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">  	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">int</span> num:nums) &#123;</span><br><span class="line">  		<span class="keyword">int</span> i = Arrays.binarySearch(dp, <span class="number">0</span>, len, num);</span><br><span class="line">  		<span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		i = -i-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">  		dp[i] = num;</span><br><span class="line">  		<span class="keyword">if</span> (i == len) &#123;</span><br><span class="line">		len++;</span><br><span class="line">	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> len;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　7.最小路径和<br>　　　　给定一个包含非负整数的 m x n 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。<br>　　　　说明：每次只能向下或者向右移动一步。</p>
-<p>　　　　分析：最值问题，适合动态规划解决。<br>　　　　原问题与子问题：原问题为求以第n个数为结尾的最长上升子序列的长度，子问题为求以第1、2、…、n-1个数为结尾的最长上升子序列的长度。<br>　　　　确定状态：第i个状态即为以第i个数为结尾的最长上升子序列的长度。<br>　　　　边界状态：i=0时，dp[i]=1<br>　　　　状态转移方程：dp[i] = max(dp[0]+1(num[i]&gt;num[0]),dp[1]+1(num[i]&gt;num[1])…dp[i-1]+1(num[i-1]&gt;num[i-1]))<br>　　　　注意：<strong>此题与最大字段和类似，dp[i]并不表示最终的结果。很多动态规划题都是如此</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	dp[i] = <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> result = dp[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; dp.length;i++) &#123;</span><br><span class="line">       	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; i;j++) &#123;</span><br><span class="line">       		<span class="keyword">if</span> (nums[i] &gt; nums[j] &amp;&amp; dp[i] &lt; dp[j] + <span class="number">1</span>) &#123;</span><br><span class="line">				dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">       	<span class="keyword">if</span> (result &lt; dp[i]) &#123;</span><br><span class="line">			result = dp[i];</span><br><span class="line">		&#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>　　<br>　　8.地下城游戏（LeetCode174）</p>
-<h3 id="背包型DP"><a href="#背包型DP" class="headerlink" title="背包型DP"></a>背包型DP</h3><h4 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0-1背包"></a>0-1背包</h4><h4 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h4><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.cnblogs.com/jbelial/articles/2116074.html" target="_blank" rel="noopener">背包九讲</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/LeetCode122/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wei Hao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BinaryZone">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/21/LeetCode122/" itemprop="url">LeetCode122（买卖股票的最佳时机2）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-21T10:07:42+08:00">
-                2019-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/LeetCode/贪心算法/" itemprop="url" rel="index">
-                    <span itemprop="name">贪心算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>　　给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。<br>设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。<br>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>　　做出这道题需要理解：在每个波谷买入并且在每个波谷之后的波峰卖出（交易多次）所获得的收益肯定是大于或等于在最低点买入在最高点卖出（交易一次）所<br>获得的收益。明白了这一点就很好做出此题，即算出每个波谷波峰直接的差值，并相加即可。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 贪心算法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit2</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> valley = prices[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> peak = prices[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> maxPro = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i &lt; prices.length - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">while</span>(i &lt; prices.length - <span class="number">1</span> &amp;&amp; prices[i] &gt;= prices[i+<span class="number">1</span>]) &#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		valley = prices[i];</span><br><span class="line">		<span class="keyword">while</span>(i &lt; prices.length - <span class="number">1</span> &amp;&amp; prices[i] &lt;= prices[i+<span class="number">1</span>]) &#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		peak = prices[i];</span><br><span class="line">		maxPro += peak-valley;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> maxPro;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 优化方案</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit1</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> maxPro = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; prices.length-<span class="number">1</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (prices[i] &lt; prices[i+<span class="number">1</span>]) &#123;</span><br><span class="line">			maxPro += prices[i+<span class="number">1</span>] - prices[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> maxPro;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h1><h3 id="动态规划："><a href="#动态规划：" class="headerlink" title="动态规划："></a>动态规划：</h3><p>　　时间复杂度：<br>　　　　O(n)。<br>　　空间复杂度：<br>　　　　O(1)。</p>
-<h1 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h1><p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2091,7 +2085,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2102,7 +2096,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

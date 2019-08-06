@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="BinaryZone">
 <meta property="og:description" content="什么是单例设计模式？　　单例设计模式是一种创建型设计模式，该模式涉及到一个类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一对象的方式，可以直接访问，不需要实例化该类的对象。 优缺点　　单例设计模式可以减少内存开销，提升运行效率，避免对资源的多重占用，并且可以实现数据共享。 实现：　　实现单例模式的关键是：构造方法私有化；提供访问唯一对象的方法。　　1.懒汉式（双检">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T12:18:55.085Z">
+<meta property="og:updated_time" content="2019-08-05T12:02:17.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例设计模式">
 <meta name="twitter:description" content="什么是单例设计模式？　　单例设计模式是一种创建型设计模式，该模式涉及到一个类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一对象的方式，可以直接访问，不需要实例化该类的对象。 优缺点　　单例设计模式可以减少内存开销，提升运行效率，避免对资源的多重占用，并且可以实现数据共享。 实现：　　实现单例模式的关键是：构造方法私有化；提供访问唯一对象的方法。　　1.懒汉式（双检">
@@ -333,17 +333,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/创建型模式/单例设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">单例设计模式</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -382,7 +371,7 @@
 <p>　　2.饿汉式：<br>　　　　利用类加载机制，解决了懒汉式中多线程访问不安全的问题，提高了效率，但有可能浪费内存。<br>　　代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton1 instance = <span class="keyword">new</span> Singleton1();</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h1><p>　　application对象</p>
+<h1 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h1><p>　　application对象、连接池。</p>
 
       
     </div>
@@ -504,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +504,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
