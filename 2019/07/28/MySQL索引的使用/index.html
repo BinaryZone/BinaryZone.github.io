@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是索引？　　官方定义为：索引是帮助MySQL高效获取数据的数据结构。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种排好序的快速查找数据结构。 　　在数据之外，数据库系统还维护着满足特点查找算法的数据结构，这些数据结构以某种方式引用（指向）数据。　　这种数据结构一般为B+树。 优缺点：　　提高数据的检索效率，降低数据的排序成本　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需">
+<meta name="description" content="Continue rising.">
 <meta name="keywords" content="数据库,MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL索引的使用">
+<meta property="og:title" content="SQL">
 <meta property="og:url" content="http://yoursite.com/2019/07/28/MySQL索引的使用/index.html">
 <meta property="og:site_name" content="BinaryZone">
-<meta property="og:description" content="什么是索引？　　官方定义为：索引是帮助MySQL高效获取数据的数据结构。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种排好序的快速查找数据结构。 　　在数据之外，数据库系统还维护着满足特点查找算法的数据结构，这些数据结构以某种方式引用（指向）数据。　　这种数据结构一般为B+树。 优缺点：　　提高数据的检索效率，降低数据的排序成本　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需">
+<meta property="og:description" content="Continue rising.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-13T06:02:45.542Z">
+<meta property="og:updated_time" content="2019-08-20T12:51:58.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL索引的使用">
-<meta name="twitter:description" content="什么是索引？　　官方定义为：索引是帮助MySQL高效获取数据的数据结构。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种排好序的快速查找数据结构。 　　在数据之外，数据库系统还维护着满足特点查找算法的数据结构，这些数据结构以某种方式引用（指向）数据。　　这种数据结构一般为B+树。 优缺点：　　提高数据的检索效率，降低数据的排序成本　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需">
+<meta name="twitter:title" content="SQL">
+<meta name="twitter:description" content="Continue rising.">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>MySQL索引的使用 | BinaryZone</title>
+  <title>SQL | BinaryZone</title>
   
 
 
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL索引的使用</h1>
+          <h1 class="post-title" itemprop="name headline">SQL</h1>
         
 
         <div class="post-meta">
@@ -363,12 +363,7 @@
       
 
       
-        <h1 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h1><p>　　官方定义为：索引是帮助MySQL高效获取数据的<strong>数据结构</strong>。索引的本质就是数据结构，其目的是为了提高查找效率。相当于一种<strong>排好序的快速查找数据结构</strong>。
-　　在数据之外，<strong>数据库系统还维护着满足特点查找算法的数据结构</strong>，这些数据结构以某种方式<strong>引用</strong>（指向）数据。<br>　　这种数据结构一般为B+树。</p>
-<h1 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h1><p>　　提高数据的检索效率，降低数据的排序成本<br>　　索引也是一张表，会占用磁盘空间；降低更新表的速率；需要花时间研究建立最优秀的索引。</p>
-<h1 id="索引分类："><a href="#索引分类：" class="headerlink" title="索引分类："></a>索引分类：</h1><p>　　单值索引<br>　　唯一索引<br>　　复合索引</p>
-<h1 id="索引结构："><a href="#索引结构：" class="headerlink" title="索引结构："></a>索引结构：</h1><p>　　B+树（最长用）<br>　　哈希<br>　　全文索引<br>　　R树</p>
-<h1 id="什么情况下需要建索引？"><a href="#什么情况下需要建索引？" class="headerlink" title="什么情况下需要建索引？"></a>什么情况下需要建索引？</h1><h1 id="什么情况下不需要建索引？"><a href="#什么情况下不需要建索引？" class="headerlink" title="什么情况下不需要建索引？"></a>什么情况下不需要建索引？</h1>
+        
       
     </div>
     
@@ -410,8 +405,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/31/递归、回溯和分治/" rel="prev" title="递归、回溯和分治">
-                递归、回溯和分治 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/05/红黑树详解/" rel="prev" title="红黑树详解">
+                红黑树详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,17 +459,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -491,7 +477,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +499,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -552,22 +538,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是索引？"><span class="nav-number">1.</span> <span class="nav-text">什么是索引？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点："><span class="nav-number">2.</span> <span class="nav-text">优缺点：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引分类："><span class="nav-number">3.</span> <span class="nav-text">索引分类：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引结构："><span class="nav-number">4.</span> <span class="nav-text">索引结构：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么情况下需要建索引？"><span class="nav-number">5.</span> <span class="nav-text">什么情况下需要建索引？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么情况下不需要建索引？"><span class="nav-number">6.</span> <span class="nav-text">什么情况下不需要建索引？</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
